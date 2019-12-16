@@ -1,9 +1,18 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-server/node_modules
-server/.pnp
+# dependencies
+/node_modules
+/.pnp
 .pnp.js
+
+/client/node_modules
+/client/.pnp
+/client.pnp.js
+
+/server/node_modules
+/server/.pnp
+/server.pnp.js
 
 # testing
 /coverage
@@ -17,7 +26,13 @@ server/.pnp
 .env.development.local
 .env.test.local
 .env.production.local
+.env
+/server/config.env
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#git rm -r --cached .
+#git add .
+#git commit -m "fixed untracked files"

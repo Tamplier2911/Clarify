@@ -1,4 +1,7 @@
-# Forkify
+# Clarify
 
-"Clothes Store" is a online cloth shop.
-Created by Artem Nikolaiev for React, HTML, CSS and SASS Study purposes.
+Survey App, is a online survey service.
+App created using React.js | Redux | Stripe | Node.js | Express | MongoDB | Mongoose.
+Created by Artem Nikolaiev for technology stack study purposes.
+
+# Deployment
