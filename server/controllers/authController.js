@@ -8,3 +8,10 @@ exports.getGoogleAuth = passport.authenticate("google", {
 // code that we need exchange to info with google server
 // code is attached in query - req.query.code
 exports.getGoogleCb = passport.authenticate("google");
+
+// app.get('/auth/google/callback',
+//   passport.authenticate('google', { failureRedirect: '/login' }),
+//   function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/');
+//   });
