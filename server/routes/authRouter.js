@@ -1,10 +1,18 @@
 const express = require("express");
 const router = express.Router();
 
-const { getGoogleAuth, getGoogleCb } = require("../controllers/authController");
+const {
+  getGoogleAuth,
+  getGoogleAuthLogout,
+  getGoogleCb,
+  getGoogleCbRedirect
+} = require("../controllers/authController");
 
-router.route("/").get(getGoogleAuth);
+// log in / log out functionality
+router.route("/login").get(getGoogleAuth);
+router.route("/logout").get(getGoogleAuthLogout);
 
-router.route("/cb").get(getGoogleCb);
+// cb / cb redirect
+router.route("/cb").get(getGoogleCb, getGoogleCbRedirect);
 
 module.exports = router;

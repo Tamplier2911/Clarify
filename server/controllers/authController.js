@@ -5,13 +5,15 @@ exports.getGoogleAuth = passport.authenticate("google", {
   scope: ["profile", "email"]
 });
 
+// perform logout and redirect to root
+exports.getGoogleAuthLogout = (req, res, next) => {
+  req.logOut();
+  res.redirect("/");
+};
+
 // code that we need exchange to info with google server
 // code is attached in query - req.query.code
-exports.getGoogleCb = passport.authenticate("google");
+exports.getGoogleCb = passport.authenticate("google", { failureRedirect: "/" });
 
-// app.get('/auth/google/callback',
-//   passport.authenticate('google', { failureRedirect: '/login' }),
-//   function(req, res) {
-//     // Successful authentication, redirect home.
-//     res.redirect('/');
-//   });
+// redirect to root
+exports.getGoogleCbRedirect = (req, res, next) => res.redirect("/");
