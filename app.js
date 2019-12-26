@@ -1,3 +1,5 @@
+// "proxy": "http://localhost:5000"
+
 // express app
 const express = require("express");
 
