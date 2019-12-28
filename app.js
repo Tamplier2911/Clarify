@@ -1,16 +1,14 @@
-// "proxy": "http://localhost:5000"
-
-// express app
 const express = require("express");
+const compression = require("compression");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const path = require("path");
 
 // cookie-session handler
 const cookieSession = require("cookie-session");
 
 // passport lib
 const passport = require("passport");
-
-// pathfinder
-const path = require("path");
 
 // passport configuration
 require("./controllers/passportController");
@@ -19,6 +17,8 @@ require("./controllers/passportController");
 const authRouter = require("./routes/authRouter");
 
 const app = express();
+
+app.use(cors());
 
 // setting cookie session with options
 app.use(
@@ -37,6 +37,8 @@ app.use(
 // initializing session in passport auth
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(compression());
 
 // ROUTES
 app.use("/auth/google", authRouter);

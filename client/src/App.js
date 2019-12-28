@@ -1,6 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.scss";
 
 function App() {
   return (
@@ -12,11 +12,19 @@ function App() {
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="http://localhost:5000/auth/google/login"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Authenticate with Google
+        </a>
+        <a
+          className="App-link"
+          href="/auth/google/login"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Authenticate with Google Proxy
         </a>
       </header>
     </div>
