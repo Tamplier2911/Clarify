@@ -36,24 +36,21 @@ passport.use(
 
       try {
         // check if user already registred
-        const existingUser = await User.findOne({ googleId: id });
+        let currentUser = await User.findOne({ googleId: id });
 
-        // else add user to data-base
-        if (!existingUser) {
-          const newUser = await User.create({
+        // else create user object in data-base
+        if (!currentUser) {
+          currentUser = await User.create({
             name: displayName,
             googleId: id,
             photo: picture,
             emailConfirmed: email_verified,
             email
           });
-
-          // if we get here we got newly created user
-          done(null, newUser);
         }
 
-        // if we get here - user already existed
-        done(null, existingUser);
+        // here - our user object either found or created
+        done(null, currentUser);
       } catch (err) {
         done(err.message, null);
       }

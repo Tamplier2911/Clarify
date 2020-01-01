@@ -18,6 +18,10 @@ const authRouter = require("./routes/authRouter");
 
 const app = express();
 
+// bundle compressions
+app.use(compression());
+
+// cross-origin-requests
 app.use(cors());
 
 // setting cookie session with options
@@ -38,13 +42,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(compression());
-
 // ROUTES
-app.use("/auth/google", authRouter);
 app.get("/", (req, res, next) => {
   if (req.user) return res.send(req.user);
   res.send("No currently logged in user.");
 });
+app.use("/auth/google", authRouter);
+// app.use('/api/v1/...', );
+// app.use('/api/v1/...', );
 
 module.exports = app;
