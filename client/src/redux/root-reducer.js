@@ -2,6 +2,8 @@
 import { combineReducers } from "redux";
 
 // reducers
+import authReducer from "./auth/auth-reducer";
+
 const testReducer = (state = {}, action) => {
   switch (action.type) {
     default:
@@ -10,6 +12,7 @@ const testReducer = (state = {}, action) => {
 };
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   test: testReducer
 });
 

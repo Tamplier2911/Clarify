@@ -1,5 +1,6 @@
 import "./Navigation.scss";
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { ReactComponent as Logo } from "../../assets/svg/clarify-logo.svg";
 import { ReactComponent as LogOut } from "../../assets/svg/logout.svg";
@@ -11,11 +12,11 @@ const Navigation = () => {
   return (
     <nav className="navigation">
       <div className="navigation__container">
-        <div className="navigation__logo">
+        <Link to="/" className="navigation__logo">
           <Logo className="navigation__logo--svg" />
-        </div>
+        </Link>
         <div className="navigation__action">
-          <a className="navigation__action--settings" href="#">
+          <a className="navigation__action--settings" href="/">
             <Settings />
             Settings
           </a>
