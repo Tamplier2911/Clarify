@@ -1,13 +1,94 @@
-body {
+:root {
+  // TYPOGRAPHY
+  --font-title: "Open Sans", sans-serif;
+  --font-text: "Lato", sans-serif;
+
+  // COLOR PALET
+  --cl-black: #000;
+  --cl-white: #fff;
+  --cl-grey: #a1a1a1;
+  --cl-font: #333;
+  --cl-primary: #df4c4c;
+
+  // BREAKPOINTS
+  --bp-tablet: 48em;
+  --bp-mobile: 26.563em;
+  // 768px / 16px = 48em
+  // $tablet: 48em;
+  // 425px / 16px = 26.5625em
+  // $mobile: 26.563em;
+}
+
+// BASE
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+// 100% / 16px * 10px = 1 rem = 62.5% 10px
+
+body {
+  font-family: var(--font-text), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--cl-font);
+
+  background-image: linear-gradient(to bottom right, #df4c4c, #e29999);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  min-height: 100vh;
+  min-width: 100vw;
+
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 0.8rem;
+    background-color: #2834930c;
+    // border-radius: 5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(to bottom, #434444, #626767);
+    border-radius: 5rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #0000004d;
+    box-shadow: inset 0 0 6px #0000004d;
+  }
+}
+
+// SELECTION
+
+::selection {
+  background-color: var(--cl-primary);
+  color: var(--cl-white);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@mixin clearFix {
+  ::after {
+    display: table;
+    content: "";
+    clear: both;
+  }
 }

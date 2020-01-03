@@ -1,16 +1,22 @@
 import "./App.scss";
 import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+
+import Navigation from "./components/Navigation/Navigation";
 
 const App = () => {
   return (
     <div className="container">
-      <div>Hello, app</div>
+      <div className="header">Header</div>
+      <Navigation />
+      <main className="main">
+        {/* <Switch> */}
+        <div>Hello, app</div>
+        {/* </Switch> */}
+      </main>
+      <div className="footer">Footer</div>
     </div>
   );
 };
 
 export default App;
-
-/*
- <a lassName="App-link" href="http://localhost:5000/auth/google/login" target="_blank" rel="noopener noreferrer"> uthenticate with Google </a>
-*/
