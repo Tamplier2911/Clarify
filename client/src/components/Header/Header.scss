@@ -28,6 +28,7 @@
     height: 12rem;
     border: 0.4rem solid #f09999;
     border-radius: 50%;
+    box-shadow: 0 0.2rem 0.4rem #00000048;
   }
 
   &__image {
@@ -39,8 +40,6 @@
   }
 
   &__credentials {
-    font-weight: 700;
-
     &--first,
     &--last,
     &--email {
@@ -88,9 +87,11 @@
       text-align: center;
 
       background-color: #f09999;
-      border: 0.2rem #f09999 solid;
+      border: 0.1rem #f09999 solid;
       border-radius: 2rem;
       padding: 0.2rem 1rem;
+      box-shadow: 0 0.2rem 0.4rem #00000048;
+      font-weight: 300;
 
       transition: color 0.3s, background-color 0.3s;
     }

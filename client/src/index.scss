@@ -76,7 +76,8 @@ body {
 // SELECTION
 
 ::selection {
-  background-color: var(--cl-primary);
+  // background-color: var(--cl-primary);
+  background-color: #f09999;
   color: var(--cl-white);
 }
 
