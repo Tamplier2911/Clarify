@@ -19,7 +19,6 @@
     background-image: linear-gradient(#ffffffd8, #e6606b83);
 
     display: grid;
-    // grid-template-rows: min-content min-content 1fr;
     grid-auto-rows: min-content;
   }
 
@@ -39,8 +38,6 @@
     grid-template-columns: 1fr min-content 1fr;
     align-items: center;
     justify-items: center;
-    // display: flex;
-    // justify-content: space-evenly;
     background-image: linear-gradient(#00000070, #00000070);
     padding: 1rem 0rem;
 
@@ -96,22 +93,19 @@
     display: grid;
     align-items: center;
     grid-row-gap: 4rem;
-    // justify-items: center;
+
+    @media only screen and (max-width: 48em) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 4rem;
+    }
+
+    @media only screen and (max-width: 450px) {
+      grid-template-columns: 1fr;
+      justify-items: stretch;
+    }
 
     color: var(--cl-font);
     padding: 4rem 2rem 2rem 2rem;
-
-    &--svg {
-      width: 1.6rem;
-      height: 1.6rem;
-      fill: var(--cl-font);
-      margin-right: 1rem;
-
-      transition: fill 0.3s;
-    }
-
-    &--decoration {
-    }
 
     &--dashboard,
     &--administration {
@@ -121,60 +115,9 @@
     }
 
     &--dashboard {
-      &-item {
-        font-weight: 300;
-        text-transform: none;
-      }
-      &-link,
-      &-link:link,
-      &-link:visited {
-        display: flex;
-        align-items: center;
-
-        text-decoration: none;
-        color: var(--cl-font);
-        transition: color 0.3s;
-      }
-
-      &-link:not(:last-child) {
-        margin-right: 0.5rem;
-      }
-
-      &-link:hover,
-      &-link:active {
-        color: #ffffff;
-      }
-
-      &-link:hover .navigation__features--svg {
-        fill: #eeeeee;
-      }
     }
 
     &--administration {
-      &-item {
-        font-weight: 300;
-        text-transform: none;
-      }
-
-      &-link,
-      &-link:link,
-      &-link:visited {
-        display: flex;
-        align-items: center;
-
-        text-decoration: none;
-        color: var(--cl-font);
-        transition: color 0.3s;
-      }
-
-      &-link:hover,
-      &-link:active {
-        color: #eeeeee;
-      }
-
-      &-link:hover .navigation__features--svg {
-        fill: #eeeeee;
-      }
     }
   }
 }

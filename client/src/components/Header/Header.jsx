@@ -28,7 +28,7 @@ const Header = () => {
         </div>
       </div>
       <div className="header__links">
-        <Link to="/newSurvey" className="header__links--anchor">
+        <Link to="/surveys/new" className="header__links--anchor">
           Create Survey
         </Link>
         <Link to="/surveys" className="header__links--anchor">

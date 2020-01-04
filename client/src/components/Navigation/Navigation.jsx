@@ -7,12 +7,16 @@ import { ReactComponent as LogOut } from "../../assets/svg/logout.svg";
 import { ReactComponent as LogIn } from "../../assets/svg/google.svg";
 import { ReactComponent as Settings } from "../../assets/svg/settings.svg";
 
-import { ReactComponent as Accounts } from "../../assets/svg/accounts.svg";
-import { ReactComponent as Reports } from "../../assets/svg/report.svg";
-import { ReactComponent as Profiles } from "../../assets/svg/profiles.svg";
-import { ReactComponent as Actions } from "../../assets/svg/actions.svg";
-import { ReactComponent as Management } from "../../assets/svg/management.svg";
-import { ReactComponent as History } from "../../assets/svg/history.svg";
+import NavFeature from "../NavFeature/NavFeature";
+
+import {
+  AccountsSVG,
+  ReportsSVG,
+  ProfilesSVG,
+  ActionsSVG,
+  ManagementSVG,
+  HistorySVG
+} from "./NavigationStyles";
 
 const Navigation = () => {
   let loggedIn = Math.random() > 0.5 ? true : false;
@@ -44,45 +48,52 @@ const Navigation = () => {
           )}
         </div>
         <div className="navigation__features">
-          <ul className="navigation__features--dashboard">
-            Dashboard
-            <div className="navigation__features--decoration"></div>
-            <li className="navigation__features--dashboard-item">
-              <a className="navigation__features--dashboard-link" href="/">
-                <Accounts className="navigation__features--svg" /> Accounts
-              </a>
-            </li>
-            <li className="navigation__features--dashboard-item">
-              <a className="navigation__features--dashboard-link" href="/">
-                <Reports className="navigation__features--svg" /> Reports
-              </a>
-            </li>
-            <li className="navigation__features--dashboard-item">
-              <a className="navigation__features--dashboard-link" href="/">
-                <Profiles className="navigation__features--svg" /> Profiles
-              </a>
-            </li>
-          </ul>
-          <ul className="navigation__features--administration">
-            Administration
-            <div className="navigation__features--decoration"></div>
-            <li className="navigation__features--administration-item">
-              <a className="navigation__features--administration-link" href="/">
-                <Actions className="navigation__features--svg" /> Actions
-              </a>
-            </li>
-            <li className="navigation__features--administration-item">
-              <a className="navigation__features--administration-link" href="/">
-                <Management className="navigation__features--svg" /> Day
-                Management
-              </a>
-            </li>
-            <li className="navigation__features--administration-item">
-              <a className="navigation__features--administration-link" href="/">
-                <History className="navigation__features--svg" /> History
-              </a>
-            </li>
-          </ul>
+          <NavFeature
+            featureName={"Dashboard"}
+            featureLinks={[
+              {
+                id: "ftr-1x1",
+                name: "Accounts",
+                svg: <AccountsSVG />,
+                linkTo: "/"
+              },
+              {
+                id: "ftr-1x2",
+                name: "Reports",
+                svg: <ReportsSVG />,
+                linkTo: "/"
+              },
+              {
+                id: "ftr-1x3",
+                name: "Profiles",
+                svg: <ProfilesSVG />,
+                linkTo: "/"
+              }
+            ]}
+          />
+          <NavFeature
+            featureName={"Administration"}
+            featureLinks={[
+              {
+                id: "ftr-2x1",
+                name: "Actions",
+                svg: <ActionsSVG />,
+                linkTo: "/"
+              },
+              {
+                id: "ftr-2x2",
+                name: "Day Management",
+                svg: <ManagementSVG />,
+                linkTo: "/"
+              },
+              {
+                id: "ftr-2x3",
+                name: "History",
+                svg: <HistorySVG />,
+                linkTo: "/"
+              }
+            ]}
+          />
         </div>
       </div>
     </nav>

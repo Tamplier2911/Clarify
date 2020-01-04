@@ -14,7 +14,7 @@ const Landing = () => {
   );
 };
 
-const Surveys = () => {
+const Dashboard = () => {
   return (
     <div>
       <div>Here is all your surveys!</div>
@@ -38,8 +38,8 @@ const App = () => {
       <main className="main">
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route path="/surveys" component={Surveys} />
-          <Route path="/newSurvey" component={NewSurvey} />
+          <Route exact path="/surveys" component={Dashboard} />
+          <Route path="/surveys/new" component={NewSurvey} />
         </Switch>
       </main>
       <footer className="footer" style={{ fontSize: "1.2rem" }}>
