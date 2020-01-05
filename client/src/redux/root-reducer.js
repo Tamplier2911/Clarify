@@ -12,7 +12,7 @@ const testReducer = (state = {}, action) => {
 };
 
 const rootReducer = combineReducers({
-  auth: authReducer,
+  user: authReducer,
   test: testReducer
 });
 

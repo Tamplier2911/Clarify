@@ -1,7 +1,13 @@
 import "./App.scss";
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 // import { Switch, Route, Redirect } from "react-router-dom";
+
+// redux
+import { connect } from "react-redux";
+import { fetchAuthObjectStart } from "./redux/auth/auth-actions";
+import { createStructuredSelector } from "reselect";
+import { selectAuthObject } from "./redux/auth/auth-selectors";
 
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
@@ -30,10 +36,13 @@ const NewSurvey = () => {
   );
 };
 
-const App = () => {
+const App = ({ currentUser, fetchAuthObjectStart }) => {
+  useEffect(() => {
+    fetchAuthObjectStart();
+  }, [fetchAuthObjectStart]);
   return (
     <div className="container">
-      <Header />
+      {currentUser ? <Header /> : null}
       <Navigation />
       <main className="main">
         <Switch>
@@ -49,4 +58,8 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToPropes = createStructuredSelector({
+  currentUser: selectAuthObject
+});
+
+export default connect(mapStateToPropes, { fetchAuthObjectStart })(App);

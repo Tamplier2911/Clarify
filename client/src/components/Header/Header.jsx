@@ -1,42 +1,53 @@
-import "./Header.scss";
+// import "./Header.scss";
 import React from "react";
-import { Link } from "react-router-dom";
 
-const Header = () => {
+// redux
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectAuthObject } from "../../redux/auth/auth-selectors";
+
+// JS Rendering CSS
+import {
+  HeaderContainer,
+  ImageContainer,
+  UserImage,
+  UserCredentials,
+  UserInfo,
+  UserDetails,
+  UserLinks,
+  UserLink
+} from "./HeaderStyles";
+
+const Header = ({ currentUser: { name, photo, email } }) => {
+  const firstName = name.split(" ")[0];
+  const secondName = name.split(" ")[1];
+
   return (
-    <header className="header">
-      <div className="header__imageContainer">
-        <img
-          src="https://bit.ly/2sH1rvG"
-          alt="user's beauty"
-          className="header__image"
-        ></img>
-      </div>
-      <div className="header__credentials">
-        <div className="header__credentials--first">
-          First Name: <span className="header__credentials--span">Artem</span>
-        </div>
-        <div className="header__credentials--last">
-          Last Name:{" "}
-          <span className="header__credentials--span">Nikolaiev</span>
-        </div>
-        <div className="header__credentials--email">
-          Email:{" "}
-          <span className="header__credentials--span">
-            artem.nikolaiev@yahoo.com
-          </span>
-        </div>
-      </div>
-      <div className="header__links">
-        <Link to="/surveys/new" className="header__links--anchor">
-          Create Survey
-        </Link>
-        <Link to="/surveys" className="header__links--anchor">
-          Check Surveys
-        </Link>
-      </div>
-    </header>
+    <HeaderContainer>
+      <ImageContainer>
+        <UserImage src={photo} alt="user's beauty"></UserImage>
+      </ImageContainer>
+      <UserCredentials>
+        <UserInfo>
+          First Name: <UserDetails>{firstName}</UserDetails>
+        </UserInfo>
+        <UserInfo>
+          Last Name: <UserDetails>{secondName}</UserDetails>
+        </UserInfo>
+        <UserInfo>
+          Email: <UserDetails>{email}</UserDetails>
+        </UserInfo>
+      </UserCredentials>
+      <UserLinks>
+        <UserLink to="/surveys/new">Create Survey</UserLink>
+        <UserLink to="/surveys">Check Surveys</UserLink>
+      </UserLinks>
+    </HeaderContainer>
   );
 };
 
-export default Header;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectAuthObject
+});
+
+export default connect(mapStateToProps)(Header);

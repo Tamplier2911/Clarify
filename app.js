@@ -43,10 +43,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // ROUTES
-app.get("/", (req, res, next) => {
-  if (req.user) return res.send(req.user);
-  res.send("No currently logged in user.");
-});
+// app.get("/", (req, res, next) => {
+//   if (req.user) return res.send(req.user);
+//   res.send("No currently logged in user.");
+// });
 app.use("/auth/google", authRouter);
 // app.use('/api/v1/...', );
 // app.use('/api/v1/...', );

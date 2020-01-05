@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+// import styled, { css } from "styled-components";
 
 export const ContainerUl = styled.ul`
   list-style: none;
@@ -25,7 +26,7 @@ export const FeatureLink = styled.a`
 
     text-decoration: none;
     color: #fff
-    transition: color 0.3s;
+    transition: color 0.3s, border 0.3s;
     border-bottom: .1rem transparent solid;
   }
 
