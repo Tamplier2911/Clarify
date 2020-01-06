@@ -9,52 +9,36 @@ import { fetchAuthObjectStart } from "./redux/auth/auth-actions";
 import { createStructuredSelector } from "reselect";
 import { selectAuthObject } from "./redux/auth/auth-selectors";
 
+// components
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
+import Footer from "./components/Footer/Footer";
 
-const Landing = () => {
-  return (
-    <div>
-      <div>Clarify is Email Survey Application</div>
-    </div>
-  );
-};
+// pages
+import HomePage from "./pages/HomePage/HomePage";
+import SurveyPage from "./pages/SurveysPage/SurveysPage";
+import CreateSurveyPage from "./pages/CreateSurveyPage/CreateSurveyPage";
 
-const Dashboard = () => {
-  return (
-    <div>
-      <div>Here is all your surveys!</div>
-    </div>
-  );
-};
-
-const NewSurvey = () => {
-  return (
-    <div>
-      <div>Create new survey!</div>
-    </div>
-  );
-};
+// JS Rendering CSS
+import { AppContainer, AppMain } from "./AppStyles";
 
 const App = ({ currentUser, fetchAuthObjectStart }) => {
   useEffect(() => {
     fetchAuthObjectStart();
   }, [fetchAuthObjectStart]);
   return (
-    <div className="container">
+    <AppContainer>
       {currentUser ? <Header /> : null}
       <Navigation />
-      <main className="main">
+      <AppMain>
         <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/surveys" component={Dashboard} />
-          <Route path="/surveys/new" component={NewSurvey} />
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/surveys" component={SurveyPage} />
+          <Route path="/surveys/new" component={CreateSurveyPage} />
         </Switch>
-      </main>
-      <footer className="footer" style={{ fontSize: "1.2rem" }}>
-        &copy; App Created by Artem Nikolaiev. All rights reserved.
-      </footer>
-    </div>
+      </AppMain>
+      <Footer />
+    </AppContainer>
   );
 };
 

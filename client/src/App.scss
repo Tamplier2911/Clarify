@@ -9,7 +9,7 @@
     )
     [center-end] minmax(4rem, 1fr) [full-end];
 }
-
+/*
 .container {
   grid-column: center-start / center-end;
   grid-row: 1 / -1;
@@ -29,17 +29,19 @@
   }
 }
 
+
 .main {
   grid-column: 2 / 3;
   background-color: #fdfdfd;
 
-  min-height: 75vh;
+  min-height: 84vh;
   padding: 2rem;
 
   @media only screen and (max-width: 48em) {
     grid-column: 1 / 3;
   }
 }
+
 .footer {
   grid-column: 2 / 3;
   background-color: #fdfdfd;
@@ -50,3 +52,4 @@
     grid-column: 1 / 3;
   }
 }
+*/

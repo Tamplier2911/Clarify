@@ -1,16 +1,10 @@
 // import "./Navigation.scss";
 import React from "react";
-import { Link } from "react-router-dom";
 
 // redux
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectAuthObject } from "../../redux/auth/auth-selectors";
-
-import { ReactComponent as Logo } from "../../assets/svg/clarify-logo.svg";
-import { ReactComponent as LogOut } from "../../assets/svg/logout.svg";
-import { ReactComponent as LogIn } from "../../assets/svg/google.svg";
-import { ReactComponent as Settings } from "../../assets/svg/settings.svg";
 
 import NavFeature from "../NavFeature/NavFeature";
 
@@ -67,19 +61,19 @@ const Navigation = ({ currentUser }) => {
               featureLinks={[
                 {
                   id: "ftr-1x1",
-                  name: "Accounts",
+                  name: "Account",
                   svg: <AccountsSVG />,
                   linkTo: "/"
                 },
                 {
                   id: "ftr-1x2",
-                  name: "Reports",
+                  name: "Report",
                   svg: <ReportsSVG />,
                   linkTo: "/"
                 },
                 {
                   id: "ftr-1x3",
-                  name: "Profiles",
+                  name: "Profile",
                   svg: <ProfilesSVG />,
                   linkTo: "/"
                 }
