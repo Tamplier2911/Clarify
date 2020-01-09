@@ -1,6 +1,6 @@
 import "./App.scss";
 import React, { useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 // import { Switch, Route, Redirect } from "react-router-dom";
 
 // redux
@@ -33,8 +33,17 @@ const App = ({ currentUser, fetchAuthObjectStart }) => {
       <AppMain>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/surveys" component={SurveyPage} />
-          <Route path="/surveys/new" component={CreateSurveyPage} />
+          <Route
+            exact
+            path="/surveys"
+            render={() => (!currentUser ? <Redirect to="/" /> : <SurveyPage />)}
+          />
+          <Route
+            path="/surveys/new"
+            render={() =>
+              !currentUser ? <Redirect to="/" /> : <CreateSurveyPage />
+            }
+          />
         </Switch>
       </AppMain>
       <Footer />
