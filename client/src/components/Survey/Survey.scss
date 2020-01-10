@@ -1,0 +1,45 @@
+/*
+.surveyPage {
+  &__campaign {
+    cursor: pointer;
+    display: grid;
+    grid-row-gap: 2rem;
+
+    border: 0.1rem #efaaad solid;
+    border-radius: 0.4rem;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 1rem 2rem #0000002f;
+
+    transition: transform 0.2s;
+
+    &:hover {
+      box-shadow: 0 1rem 3rem #00000038;
+      transform: scale(1.02);
+    }
+
+    &--name {
+      //   color: #f2abab;
+    }
+
+    &--progress {
+      display: grid;
+      // dynamic
+      grid-template-columns: 20fr 80fr;
+      border-radius: 0.4rem;
+      overflow: hidden;
+      text-align: center;
+
+      &-1 {
+        background-color: #fd8484;
+      }
+      &-2 {
+        background-color: #67fdb2;
+      }
+    }
+    &--participants {
+      //   color: #f2abab;
+    }
+  }
+}
+*/

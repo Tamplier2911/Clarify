@@ -33,17 +33,8 @@ const App = ({ currentUser, fetchAuthObjectStart }) => {
       <AppMain>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route
-            exact
-            path="/surveys"
-            render={() => (!currentUser ? <Redirect to="/" /> : <SurveyPage />)}
-          />
-          <Route
-            path="/surveys/new"
-            render={() =>
-              !currentUser ? <Redirect to="/" /> : <CreateSurveyPage />
-            }
-          />
+          <Route exact path="/surveys" render={() => <SurveyPage />} />
+          <Route path="/surveys/new" render={() => <CreateSurveyPage />} />
         </Switch>
       </AppMain>
       <Footer />
@@ -56,3 +47,15 @@ const mapStateToPropes = createStructuredSelector({
 });
 
 export default connect(mapStateToPropes, { fetchAuthObjectStart })(App);
+
+// <Route
+//     exact
+//     path="/surveys"
+//     render={() => (!currentUser ? <Redirect to="/" /> : <SurveyPage />)}
+//   />
+//   <Route
+//     path="/surveys/new"
+//     render={() =>
+//       !currentUser ? <Redirect to="/" /> : <CreateSurveyPage />
+//     }
+//   />
