@@ -33,6 +33,10 @@ const userSchema = new mongoose.Schema(
       enum: ["user", "observer", "admin"],
       default: "user"
     },
+    credits: {
+      type: Number,
+      default: 0
+    },
     /*
   password: {
     type: String,

@@ -18,10 +18,7 @@ import {
   UserLink
 } from "./HeaderStyles";
 
-const Header = ({ currentUser: { name, photo, email } }) => {
-  const firstName = name.split(" ")[0];
-  const secondName = name.split(" ")[1];
-
+const Header = ({ currentUser: { name, photo, email, credits } }) => {
   return (
     <HeaderContainer>
       <ImageContainer>
@@ -29,13 +26,13 @@ const Header = ({ currentUser: { name, photo, email } }) => {
       </ImageContainer>
       <UserCredentials>
         <UserInfo>
-          First Name: <UserDetails>{firstName}</UserDetails>
-        </UserInfo>
-        <UserInfo>
-          Last Name: <UserDetails>{secondName}</UserDetails>
+          Name: <UserDetails>{name}</UserDetails>
         </UserInfo>
         <UserInfo>
           Email: <UserDetails>{email}</UserDetails>
+        </UserInfo>
+        <UserInfo>
+          Credits: <UserDetails>${credits}</UserDetails>
         </UserInfo>
       </UserCredentials>
       <UserLinks>
