@@ -3,17 +3,11 @@ import { combineReducers } from "redux";
 
 // reducers
 import authReducer from "./auth/auth-reducer";
-
-const testReducer = (state = {}, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+import paymentReducer from "./payment/payment-reducer";
 
 const rootReducer = combineReducers({
   user: authReducer,
-  test: testReducer
+  payment: paymentReducer
 });
 
 export default rootReducer;

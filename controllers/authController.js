@@ -20,3 +20,12 @@ exports.getGoogleCbRedirect = (req, res, next) => res.redirect("/");
 
 // recieve user object if user is logged in
 exports.getUserObject = (req, res, next) => res.send(req.user);
+
+// check if req.user object is exists middleware
+exports.authorized = (req, res, next) => {
+  if (!req.user)
+    return res
+      .status(401)
+      .send({ error: "You have to login, in order to purchase credits." });
+  next();
+};

@@ -3,7 +3,6 @@ const compression = require("compression");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
-const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
 const enforce = require("express-sslify");
 
@@ -16,11 +15,9 @@ const passport = require("passport");
 // passport configuration
 require("./controllers/passportController");
 
-// REFACTOR THAT *******************************************************
-const User = require("./models/userModel");
-
 // routes
 const authRouter = require("./routes/authRouter");
+const paymentRouter = require("./routes/paymentRouter");
 
 const app = express();
 
@@ -73,32 +70,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // ROUTES
-// app.get("/", (req, res, next) => {
-//   if (req.user) return res.send(req.user);
-//   res.send("No currently logged in user.");
-// });
 app.use("/auth/google", authRouter);
-// app.use('/api/v1/...', );
+app.use("/api/v1/payment", paymentRouter);
 // app.use('/api/v1/...', );
 
-// REFACTOR THAT *******************************************************
-app.post("/payment", (req, res) => {
-  const body = {
-    source: req.body.token.id,
-    amount: req.body.amount,
-    currency: "usd"
-  };
-
-  stripe.charges.create(body, async (stripeErr, stripeRes) => {
-    if (stripeErr) {
-      res.status(500).send({ error: stripeErr });
-    } else {
-      const currentUser = await User.findByIdAndUpdate(req.body.userId, {
-        credits: req.body.price
-      });
-      res.status(200).send({ success: stripeRes });
-    }
-  });
+/*
+app.get("/", (req, res, next) => {
+  if (req.user) return res.send(req.user);
+  res.send("No currently logged in user.");
 });
+*/
 
 module.exports = app;
