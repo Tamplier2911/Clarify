@@ -24,6 +24,7 @@ export const AppMain = styled.main`
   background-color: #fdfdfd;
 
   min-height: 84vh;
+  // min-height: 70vh;
   //   padding: 2rem;
 
   @media only screen and (max-width: 48em) {
