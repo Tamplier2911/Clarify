@@ -48,6 +48,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// ROUTES
+app.use("/auth/google", authRouter);
+app.use("/api/v1/payment", paymentRouter);
+// app.use('/api/v1/...', );
+
 if (process.env.NODE_ENV === "production") {
   // compress all responsee bodies
   app.use(compression());
@@ -68,10 +73,5 @@ if (process.env.NODE_ENV === "production") {
 app.get("/service-worker.js", (req, res) => {
   res.sendFile(path.resolve(__dirname, "..", "build", "service-worker.js"));
 });
-
-// ROUTES
-app.use("/auth/google", authRouter);
-app.use("/api/v1/payment", paymentRouter);
-// app.use('/api/v1/...', );
 
 module.exports = app;
