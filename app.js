@@ -37,8 +37,8 @@ app.use(
     keys: [process.env.COOKIE_SECRET],
 
     // Cookie Options
-    maxAge: process.env.COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
-    httpOnly: true
+    maxAge: process.env.COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    // httpOnly: true
     // secure: false for http && true for https
     // req.secure || req.headers["x-forwarded-proto"] === "https" ? true : false
   })
