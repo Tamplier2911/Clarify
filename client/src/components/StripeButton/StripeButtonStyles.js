@@ -42,7 +42,7 @@ export const StripeCheckoutButton = styled(StripeCheckout)`
   & span {
     ${StripeButtonAndStripeHiddenDivStyles}
     font-size: 1.6rem !important;
-    font-weight: 300 !important;
+    font-weight: 400 !important
 
     display: flex !important;
     align-items: center !important;

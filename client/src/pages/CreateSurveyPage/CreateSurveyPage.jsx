@@ -62,7 +62,8 @@ const CreateSurveyPage = () => {
         <CreateSurveyFormWrapper>
           <CreateSurveyDescriptor>
             <CreateSurveyBulletPoint />
-            In order to create Campaign, you need to have some credits.
+            In order to create Campaign, you need to have credits on your
+            account.
           </CreateSurveyDescriptor>
           <CreateSurveyDescriptor>
             <CreateSurveyBulletPoint />
