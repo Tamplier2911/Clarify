@@ -8,15 +8,18 @@ exports.getGoogleAuth = passport.authenticate("google", {
 // perform logout and redirect to root
 exports.getGoogleAuthLogout = (req, res, next) => {
   req.logOut();
-  res.redirect("/");
+  res.redirect("https://clarify-s.herokuapp.com/");
 };
 
 // code that we need exchange to info with google server
 // code is attached in query - req.query.code
-exports.getGoogleCb = passport.authenticate("google", { failureRedirect: "/" });
+exports.getGoogleCb = passport.authenticate("google", {
+  failureRedirect: "https://clarify-s.herokuapp.com/"
+});
 
 // redirect to root
-exports.getGoogleCbRedirect = (req, res, next) => res.redirect("/");
+exports.getGoogleCbRedirect = (req, res, next) =>
+  res.redirect("https://clarify-s.herokuapp.com/");
 
 // recieve user object if user is logged in
 exports.getUserObject = (req, res, next) => res.send(req.user);
