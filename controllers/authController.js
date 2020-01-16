@@ -8,7 +8,8 @@ exports.getGoogleAuth = passport.authenticate("google", {
 // perform logout and redirect to root
 exports.getGoogleAuthLogout = (req, res, next) => {
   req.logOut();
-  res.send(req.user);
+  // res.send(req.user);
+  res.redirect("/");
 };
 
 // code that we need exchange to info with google server
@@ -16,7 +17,7 @@ exports.getGoogleAuthLogout = (req, res, next) => {
 exports.getGoogleCb = passport.authenticate("google", { failureRedirect: "/" });
 
 // redirect to root
-exports.getGoogleCbRedirect = (req, res, next) => res.send(req.user);
+exports.getGoogleCbRedirect = (req, res, next) => res.redirect("/");
 
 // recieve user object if user is logged in
 exports.getUserObject = (req, res, next) => res.send(req.user);

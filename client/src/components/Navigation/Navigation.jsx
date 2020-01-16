@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectAuthObject } from "../../redux/auth/auth-selectors";
 
+import { logUserInStart, logUserOutStart } from "../../redux/auth/auth-actions";
+
 import NavFeature from "../NavFeature/NavFeature";
 
 // JS Rendering CSS
@@ -29,7 +31,7 @@ import {
   HistorySVG
 } from "./NavigationStyles";
 
-const Navigation = ({ currentUser }) => {
+const Navigation = ({ currentUser, logUserInStart, logUserOutStart }) => {
   return (
     <NavContainer>
       <NavWrapper>
@@ -43,15 +45,15 @@ const Navigation = ({ currentUser }) => {
           </NavAnchors>
           <NavPillar />
           {currentUser ? (
-            <NavAnchors href="/auth/google/logout">
+            <button type="button" onClick={() => logUserOutStart()}>
               <LogOutSVG />
               Log Out
-            </NavAnchors>
+            </button>
           ) : (
-            <NavAnchors href="/auth/google/login">
+            <button type="button" onClick={() => logUserInStart()}>
               <LogInSVG />
               Log In
-            </NavAnchors>
+            </button>
           )}
         </NavAction>
         {currentUser ? (
@@ -113,4 +115,6 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectAuthObject
 });
 
-export default connect(mapStateToProps)(Navigation);
+export default connect(mapStateToProps, { logUserInStart, logUserOutStart })(
+  Navigation
+);
