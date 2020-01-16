@@ -33,8 +33,8 @@ export function* fetchAuthObject() {
 
 export function* logUserIn() {
   try {
-    // yield axios.get("/auth/google/login");
-    yield window.location.assign("/auth/google/login");
+    yield axios.get("/auth/google/login");
+    // yield window.location.assign("/auth/google/login");
     // yield window.location.reload(true);
     // yield put(logUserInSuccess(true));
     // yield put(fetchAuthObjectStart());
