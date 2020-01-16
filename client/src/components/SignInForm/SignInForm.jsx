@@ -34,9 +34,6 @@ const SignInForm = ({ logUserInStart }) => {
   //  email: "test@examile.com",
   //  password: "test1234"
 
-  //  email: "artyom.nikolaev@yahoo.com"
-  //  password: "admin1234"
-
   return (
     <SignInFormContainer>
       <SignInFormTitle>I already have an account:</SignInFormTitle>
