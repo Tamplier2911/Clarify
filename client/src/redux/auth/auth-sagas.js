@@ -33,16 +33,14 @@ export function* fetchAuthObject() {
 
 export function* logUserIn() {
   try {
-    yield axios({
-      method: "GET",
-      url: "/auth/google/login"
-    });
-    yield put(logUserInSuccess(true));
-    yield put(fetchAuthObjectStart());
+    // yield axios.get("/auth/google/login");
+    yield window.location.assign("/auth/google/login");
+    // yield window.location.reload(true);
+    // yield put(logUserInSuccess(true));
+    // yield put(fetchAuthObjectStart());
   } catch (error) {
-    yield put(logUserInFailure(error.message));
+    // yield put(logUserInFailure(error.message));
   }
-  yield console.log("log in from saga :D");
 }
 
 export function* logUserOut() {
@@ -56,7 +54,6 @@ export function* logUserOut() {
   } catch (error) {
     yield put(logUserOutFailure(error.message));
   }
-  yield console.log("log out from saga :D");
 }
 
 export function* onFetchAuthObjectStart() {
