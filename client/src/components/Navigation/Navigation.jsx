@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectAuthObject } from "../../redux/auth/auth-selectors";
 
-import { logUserInStart, logUserOutStart } from "../../redux/auth/auth-actions";
+import { logUserOutStart } from "../../redux/auth/auth-actions";
 
 import NavFeature from "../NavFeature/NavFeature";
 
@@ -18,11 +18,9 @@ import {
   LogoSVG,
   NavAction,
   NavAnchors,
-  NavPillar,
   LogOutSVG,
-  LogInSVG,
+  ArrowSVG,
   NavFeatures,
-  SettingsSVG,
   AccountsSVG,
   ReportsSVG,
   ProfilesSVG,
@@ -31,7 +29,7 @@ import {
   HistorySVG
 } from "./NavigationStyles";
 
-const Navigation = ({ currentUser, logUserInStart, logUserOutStart }) => {
+const Navigation = ({ currentUser, logUserOutStart }) => {
   return (
     <NavContainer>
       <NavWrapper>
@@ -39,21 +37,22 @@ const Navigation = ({ currentUser, logUserInStart, logUserOutStart }) => {
           <LogoSVG />
         </LogoLink>
         <NavAction>
-          <NavAnchors href="/">
-            <SettingsSVG />
-            Settings
-          </NavAnchors>
-          <NavPillar />
           {currentUser ? (
-            <button type="button" onClick={() => logUserOutStart()}>
+            <NavAnchors
+              to="/"
+              onClick={e => {
+                e.preventDefault();
+                logUserOutStart();
+              }}
+            >
               <LogOutSVG />
               Log Out
-            </button>
+            </NavAnchors>
           ) : (
-            <button type="button" onClick={() => logUserInStart()}>
-              <LogInSVG />
-              Log In
-            </button>
+            <NavAnchors to="/signup">
+              <ArrowSVG />
+              Get Started
+            </NavAnchors>
           )}
         </NavAction>
         {currentUser ? (
@@ -115,6 +114,6 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectAuthObject
 });
 
-export default connect(mapStateToProps, { logUserInStart, logUserOutStart })(
-  Navigation
-);
+export default connect(mapStateToProps, {
+  logUserOutStart
+})(Navigation);

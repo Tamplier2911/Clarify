@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 
 import { ReactComponent as Logo } from "../../assets/svg/clarify-logo.svg";
 import { ReactComponent as LogOut } from "../../assets/svg/logout.svg";
-import { ReactComponent as LogIn } from "../../assets/svg/google.svg";
-import { ReactComponent as Settings } from "../../assets/svg/settings.svg";
+import { ReactComponent as Arrow } from "../../assets/svg/arrow.svg";
 import { ReactComponent as Accounts } from "../../assets/svg/accounts.svg";
 import { ReactComponent as Reports } from "../../assets/svg/report.svg";
 import { ReactComponent as Profiles } from "../../assets/svg/profiles.svg";
@@ -57,11 +56,7 @@ export const LogOutSVG = styled(LogOut)`
   ${svgstyle2}
 `;
 
-export const LogInSVG = styled(LogIn)`
-  ${svgstyle2}
-`;
-
-export const SettingsSVG = styled(Settings)`
+export const ArrowSVG = styled(Arrow)`
   ${svgstyle2}
 `;
 
@@ -106,14 +101,14 @@ export const LogoSVG = styled(Logo)`
 
 export const NavAction = styled.div`
   display: grid;
-  grid-template-columns: 1fr min-content 1fr;
+  grid-template-columns: 1fr;
   align-items: center;
   justify-items: center;
   background-image: linear-gradient(#00000070, #00000070);
   padding: 1rem 0rem;
 `;
 
-export const NavAnchors = styled.a`
+export const NavAnchors = styled(Link)`
   &:link,
   &:visited {
     display: flex;

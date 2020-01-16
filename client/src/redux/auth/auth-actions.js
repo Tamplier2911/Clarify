@@ -9,7 +9,10 @@ const {
   LOG_USER_IN_FAILURE,
   LOG_USER_OUT_START,
   LOG_USER_OUT_SUCCESS,
-  LOG_USER_OUT_FAILURE
+  LOG_USER_OUT_FAILURE,
+  SIGN_USER_UP_START,
+  SIGN_USER_UP_SUCCESS,
+  SIGH_USER_UP_FAILURE
 } = authTypes;
 
 export const fetchAuthObjectStart = () => ({
@@ -26,8 +29,9 @@ export const fetchAuthObjectFailure = errorMessage => ({
   payload: errorMessage
 });
 
-export const logUserInStart = () => ({
-  type: LOG_USER_IN_START
+export const logUserInStart = ({ email, password }) => ({
+  type: LOG_USER_IN_START,
+  payload: { email, password }
 });
 
 export const logUserInSuccess = loggedIn => ({
@@ -51,5 +55,25 @@ export const logUserOutSuccess = loggedOut => ({
 
 export const logUserOutFailure = errorMessage => ({
   type: LOG_USER_OUT_FAILURE,
+  payload: errorMessage
+});
+
+export const signUserUpStart = ({
+  name,
+  email,
+  password,
+  passwordConfirm
+}) => ({
+  type: SIGN_USER_UP_START,
+  payload: { name, email, password, passwordConfirm }
+});
+
+export const signUserUpSuccess = signedUp => ({
+  type: SIGN_USER_UP_SUCCESS,
+  payload: signedUp
+});
+
+export const signUserUpFailure = errorMessage => ({
+  type: SIGH_USER_UP_FAILURE,
   payload: errorMessage
 });

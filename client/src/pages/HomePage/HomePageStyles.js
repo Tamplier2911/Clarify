@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 import image from "../../assets/jpg/clarify.jpg";
 
 const introStyle = css`
@@ -69,7 +70,7 @@ export const HomepageCTA = styled.div`
   ${CTAStyle}
 `;
 
-export const HomepageLink = styled.a`
+export const HomepageLink = styled(Link)`
   link,
   &:link,
   &:visited {

@@ -15,6 +15,7 @@ export const ButtonBig = styled.button`
   font-size: 1.6rem;
   box-shadow: 0 0.2rem 0.4rem #00000027;
   transition: color 0.3s, background-color 0.3s;
+  outline: none;
 
   &:hover {
     background-color: #fff;

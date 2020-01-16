@@ -18,6 +18,7 @@ import Footer from "./components/Footer/Footer";
 import HomePage from "./pages/HomePage/HomePage";
 import SurveyPage from "./pages/SurveysPage/SurveysPage";
 import CreateSurveyPage from "./pages/CreateSurveyPage/CreateSurveyPage";
+import SignUpPage from "./pages/SignUpPage/SignUpPage";
 
 // JS Rendering CSS
 import { AppContainer, AppMain } from "./AppStyles";
@@ -33,8 +34,27 @@ const App = ({ currentUser, fetchAuthObjectStart }) => {
       <AppMain>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/surveys" render={() => <SurveyPage />} />
-          <Route path="/surveys/new" render={() => <CreateSurveyPage />} />
+          {/* <Route exact path="/surveys" render={() => <SurveyPage />} /> */}
+          <Route
+            exact
+            path="/surveys"
+            render={() => (!currentUser ? <Redirect to="/" /> : <SurveyPage />)}
+          />
+          {/* <Route path="/surveys/new" render={() => <CreateSurveyPage />} /> */}
+          <Route
+            path="/surveys/new"
+            render={() =>
+              !currentUser ? <Redirect to="/" /> : <CreateSurveyPage />
+            }
+          />
+          {/* <Route exact path="/signup" render={() => <SignUpPage />} /> */}
+          <Route
+            exact
+            path="/signup"
+            render={() =>
+              currentUser ? <Redirect to="/surveys" /> : <SignUpPage />
+            }
+          />
         </Switch>
       </AppMain>
       <Footer />

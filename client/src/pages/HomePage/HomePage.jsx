@@ -46,7 +46,7 @@ const HomePage = ({ user }) => {
       ) : (
         <HomepageCTA>
           Interested? Don't wait!{" "}
-          <HomepageLink href="/auth/google/login">Sign Up</HomepageLink> now!
+          <HomepageLink to="/signup">Sign Up</HomepageLink> now!
         </HomepageCTA>
       )}
     </HomepageContainer>

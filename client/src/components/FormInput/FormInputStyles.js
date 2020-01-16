@@ -33,7 +33,11 @@ export const FormInputBar = styled.input`
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-box-shadow: 0 0 0 30px #f3f3f3 inset !important;
+  }
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: #d56363 !important;
   }
 
   &::-moz-focus-inner {

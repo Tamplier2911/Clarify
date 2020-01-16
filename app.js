@@ -1,57 +1,65 @@
 const express = require("express");
-const compression = require("compression");
-const cors = require("cors");
-const bodyParser = require("body-parser");
 const path = require("path");
 
+const morgan = require("morgan");
+
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
+
+const mongoSanitize = require("express-mongo-sanitize");
+const xss = require("xss-clean");
+
+const hpp = require("hpp");
+
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const compression = require("compression");
+const cors = require("cors");
 const enforce = require("express-sslify");
 
-// cookie-session handler
-const cookieSession = require("cookie-session");
-
-// passport lib
-const passport = require("passport");
-
-// passport configuration
-require("./controllers/passportController");
+// error handlers here
 
 // routes
-const authRouter = require("./routes/authRouter");
-const paymentRouter = require("./routes/paymentRouter");
+const paymentRouter = require("./routes/paymentRoutes");
+const userRouter = require("./routes/userRoutes");
 
 const app = express();
-
-// parse body of all request and convert it to json
-app.use(bodyParser.json());
-
-// url strings we getting in or passing out do not incontain things like spaces
-app.use(bodyParser.urlencoded({ extended: true }));
+app.enable("trust proxy");
 
 // cross-origin-requests
 app.use(cors());
+app.options("*", cors());
 
-// setting cookie session with options
-app.use(
-  cookieSession({
-    name: "session",
-    keys: [process.env.COOKIE_SECRET],
+app.use(helmet());
 
-    // Cookie Options
-    maxAge: process.env.COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-    // httpOnly: true
-    // secure: false for http && true for https
-    // req.secure || req.headers["x-forwarded-proto"] === "https" ? true : false
-  })
-);
+if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
-// initializing session in passport auth
-app.use(passport.initialize());
-app.use(passport.session());
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: "Too many requests from this IP, please try again in a hour."
+});
+app.use("/api", limiter);
+
+app.use(express.json({ limit: "10kb" }));
+app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+
+app.use(mongoSanitize());
+app.use(xss());
+app.use(hpp({ whitelist: [] }));
+
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  // CONSOLE LOG COOKIES ON EACH REQUEST
+  console.log(req.cookies);
+  next();
+});
 
 // ROUTES
-app.use("/auth/google", authRouter);
+app.use("/api/v1/users", userRouter);
 app.use("/api/v1/payment", paymentRouter);
-// app.use('/api/v1/...', );
 
 if (process.env.NODE_ENV === "production") {
   // compress all responsee bodies
