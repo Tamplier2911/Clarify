@@ -25,7 +25,6 @@ export const HeaderContainer = styled.header`
 
   @media only screen and (max-width: 450px) {
     grid-template-columns: 1fr;
-    justify-items: center;
   }
 `;
 
@@ -35,6 +34,10 @@ export const ImageContainer = styled.div`
   border: 0.4rem solid #f09999;
   border-radius: 50%;
   box-shadow: 0 0.2rem 0.4rem #00000048;
+
+  @media only screen and (max-width: 450px) {
+    justify-self: center;
+  }
 `;
 
 export const UserImage = styled.img`
@@ -45,7 +48,14 @@ export const UserImage = styled.img`
   border-radius: 50%;
 `;
 
-export const UserCredentials = styled.div``;
+export const UserCredentials = styled.div`
+  @media only screen and (max-width: 48em) {
+    justify-self: center;
+  }
+  @media only screen and (max-width: 450px) {
+    justify-self: start;
+  }
+`;
 
 export const UserInfo = styled.div`
   width: 20vw;
@@ -57,6 +67,14 @@ export const UserInfo = styled.div`
   @media only screen and (max-width: 48em) {
     width: 40vw;
   }
+
+  @media only screen and (max-width: 450px) {
+    width: 60vw;
+  }
+
+  @media only screen and (max-width: 26.563em) {
+    width: 80vw;
+  }
 `;
 
 export const UserDetails = styled.span`
@@ -64,22 +82,39 @@ export const UserDetails = styled.span`
 `;
 
 export const UserLinks = styled.div`
-  align-self: stretch;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  // align-self: stretch;
+  // display: flex;
+  // justify-content: space-evenly;
+  // align-items: center;
+  display: grid;
+  justify-items: center;
+  grid-row-gap: 2rem;
 
-  @media only screen and (max-width: 1124px) {
-    flex-direction: column;
-  }
+  // @media only screen and (max-width: 1124px) {
+  //   flex-direction: column;
+  // }
 
   @media only screen and (max-width: 920px) {
     grid-column: 1 / -1;
-    flex-direction: row;
+    //   flex-direction: row;
+    justify-items: stretch;
+  }
+
+  @media only screen and (max-width: 48em) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2rem;
   }
 
   @media only screen and (max-width: 450px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-row-gap: 0.5rem;
+  }
+
+  @media only screen and (max-width: 26.563em) {
+    // width: 40rem;
+    // display: grid;
+    // align-self: stretch;
+    // justify-self: stretch;
   }
 `;
 

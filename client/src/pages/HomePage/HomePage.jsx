@@ -42,7 +42,7 @@ const HomePage = ({ user }) => {
         <HomepageStep>4</HomepageStep>
       </HomepageIntroRight>
       {user ? (
-        <HomepageWelcome> Wellcome! </HomepageWelcome>
+        <HomepageWelcome> Welcome! </HomepageWelcome>
       ) : (
         <HomepageCTA>
           Interested? Don't wait!{" "}
