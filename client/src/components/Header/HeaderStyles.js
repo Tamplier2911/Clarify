@@ -87,16 +87,16 @@ export const UserLink = styled(Link)`
   &:link,
   &:visited {
     text-decoration: none;
-    color: var(--cl-white);
+    color: #333;
 
     text-align: center;
 
-    background-color: #f09999;
+    background-color: #fff
     border: 0.1rem #f09999 solid;
     border-radius: 2rem;
     padding: 0.2rem 1rem;
     box-shadow: 0 0.2rem 0.4rem #00000048;
-    font-weight: 300;
+    font-weight: 400;
 
     transition: color 0.3s, background-color 0.3s;
   }

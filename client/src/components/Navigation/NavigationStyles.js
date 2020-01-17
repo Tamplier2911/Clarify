@@ -92,11 +92,26 @@ export const LogoLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+  text-decoration: none;
+  color: #f95a5a;
+  font-size: 2rem;
+  padding: 0 0 1rem 0;
 `;
 
 export const LogoSVG = styled(Logo)`
   height: 20rem;
   width: 20rem;
+
+  // @media only screen and (max-width: 48em) {
+  //   font-size: 56.25%;
+  // }
+
+  @media only screen and (max-width: 26.563em) {
+    height: 12rem;
+    width: 12rem;
+  }
 `;
 
 export const NavAction = styled.div`

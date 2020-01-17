@@ -7,11 +7,13 @@ const getPercentage = ({ range }) => {
 export const SurveyDescription = styled.div`
   font-size: 1.4rem;
   width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-height: 2.2rem; // THIS
-  transition: max-height 0.5s ease-out; // THIS
+  // white-space: nowrap;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: 7rem; // THIS
+  // transition: max-height 0.5s ease-out; // THIS
 
   &::-webkit-scrollbar {
     width: 0.8rem;
@@ -34,6 +36,8 @@ export const SurveyContainer = styled.div`
   cursor: pointer;
   display: grid;
   grid-row-gap: 2rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr repeat(2, min-content);
 
   border: 0.1rem #efaaad solid;
   border-radius: 0.4rem;
@@ -48,13 +52,13 @@ export const SurveyContainer = styled.div`
     transform: scale(1.02);
   }
 
-  &:hover ${SurveyDescription} {
-    white-space: unset;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    max-height: 20rem; // THIS
-    transition: max-height 1s ease-in; // THIS
-  }
+  // &:hover ${SurveyDescription} {
+  //   white-space: unset;
+  //   overflow-y: scroll;
+  //   overflow-x: hidden;
+  //   max-height: 20rem; // THIS
+  //   transition: max-height 1s ease-in; // THIS
+  // }
 `;
 
 export const SurveyProgress = styled.div`

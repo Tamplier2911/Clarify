@@ -1,6 +1,7 @@
 import React from "react";
 
 import {
+  NavFeatureWrapper,
   ContainerUl,
   DecorationDiv,
   FeatureItem,
@@ -9,22 +10,24 @@ import {
 
 const NavFeature = ({ featureName, featureLinks }) => {
   return (
-    <ContainerUl>
+    <NavFeatureWrapper>
       {featureName}
       <DecorationDiv />
-      {featureLinks.map(({ id, name, svg, linkTo }) => {
-        // const { id, name, svg, linkTo } = link;
-        return (
-          <FeatureItem key={id}>
-            <FeatureLink href={linkTo}>
-              {/* {svg.render()}  if passed as component */}
-              {svg}
-              {name}
-            </FeatureLink>
-          </FeatureItem>
-        );
-      })}
-    </ContainerUl>
+      <ContainerUl>
+        {featureLinks.map(({ id, name, svg, linkTo }) => {
+          // const { id, name, svg, linkTo } = link;
+          return (
+            <FeatureItem key={id}>
+              <FeatureLink to={linkTo}>
+                {/* {svg.render()}  if passed as component */}
+                {svg}
+                {name}
+              </FeatureLink>
+            </FeatureItem>
+          );
+        })}
+      </ContainerUl>
+    </NavFeatureWrapper>
   );
 };
 

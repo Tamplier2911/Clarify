@@ -31,7 +31,7 @@ const SignInForm = ({ logUserInStart }) => {
     logUserInStart(userCredentials);
   };
 
-  //  email: "test@examile.com",
+  //  email: "test@example.com",
   //  password: "test1234"
 
   return (

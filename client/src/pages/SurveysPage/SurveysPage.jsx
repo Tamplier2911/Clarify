@@ -44,6 +44,24 @@ const SurveysPage = () => {
           range={{ start: 17, end: 63 }}
           participants="6321"
         />
+        <Survey
+          name="First Campaign"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          range={{ start: 20, end: 80 }}
+          participants="9873"
+        />
+        <Survey
+          name="First Campaign"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          range={{ start: 20, end: 80 }}
+          participants="9873"
+        />
+        <Survey
+          name="First Campaign"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          range={{ start: 20, end: 80 }}
+          participants="9873"
+        />
       </SurveyPageCampaigns>
     </SurveyPageContainer>
   );

@@ -32,8 +32,18 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+
+  @media only screen and (max-width: 48em) {
+    font-size: 56.25%;
+  }
+
+  @media only screen and (max-width: 26.563em) {
+    font-size: 50%;
+  }
 }
-// 100% / 16px * 10px = 1 rem = 62.5% 10px
+// 100% / 16px * 10px = 1rem = 62.5% 10px
+// 100% / 16px * 9px = 1rem = 56.25% 9px
+// 100% / 16px * 8px = 1rem = 50% 8px
 
 body {
   font-family: var(--font-text), sans-serif;

@@ -16,6 +16,7 @@ export const AppContainer = styled.div`
 
   @media only screen and (max-width: 48em) {
     grid-template-columns: 1fr;
+    margin: 0rem;
   }
 `;
 

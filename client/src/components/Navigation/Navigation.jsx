@@ -35,6 +35,7 @@ const Navigation = ({ currentUser, logUserOutStart }) => {
       <NavWrapper>
         <LogoLink to="/">
           <LogoSVG />
+          &#8634;
         </LogoLink>
         <NavAction>
           {currentUser ? (
@@ -70,13 +71,13 @@ const Navigation = ({ currentUser, logUserOutStart }) => {
                   id: "ftr-1x2",
                   name: "Report",
                   svg: <ReportsSVG />,
-                  linkTo: "/"
+                  linkTo: "/surveys"
                 },
                 {
                   id: "ftr-1x3",
                   name: "Profile",
                   svg: <ProfilesSVG />,
-                  linkTo: "/"
+                  linkTo: "/surveys/new"
                 }
               ]}
             />
@@ -93,13 +94,13 @@ const Navigation = ({ currentUser, logUserOutStart }) => {
                   id: "ftr-2x2",
                   name: "Day Management",
                   svg: <ManagementSVG />,
-                  linkTo: "/"
+                  linkTo: "/surveys"
                 },
                 {
                   id: "ftr-2x3",
                   name: "History",
                   svg: <HistorySVG />,
-                  linkTo: "/"
+                  linkTo: "/surveys/new"
                 }
               ]}
             />

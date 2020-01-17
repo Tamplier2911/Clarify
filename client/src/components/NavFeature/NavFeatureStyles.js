@@ -1,10 +1,14 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 // import styled, { css } from "styled-components";
+
+export const NavFeatureWrapper = styled.div`
+  text-transform: uppercase;
+  font-weight: 700;
+`;
 
 export const ContainerUl = styled.ul`
   list-style: none;
-  text-transform: uppercase;
-  font-weight: 700;
 `;
 
 export const DecorationDiv = styled.div`
@@ -18,7 +22,7 @@ export const FeatureItem = styled.li`
   text-transform: none;
 `;
 
-export const FeatureLink = styled.a`
+export const FeatureLink = styled(Link)`
   &:link,
   &:visited {
     display: flex;
