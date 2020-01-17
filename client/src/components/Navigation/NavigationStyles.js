@@ -168,6 +168,10 @@ export const NavFeatures = styled.div`
     justify-items: stretch;
   }
 
+  @media only screen and (max-width: 26.563em) {
+    grid-row-gap: 1rem;
+  }
+
   color: var(--cl-font);
   padding: 4rem 2rem 2rem 2rem;
 `;

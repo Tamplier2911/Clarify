@@ -32,6 +32,10 @@ export const FeatureLink = styled(Link)`
     color: #fff
     transition: color 0.3s, border 0.3s;
     border-bottom: .1rem transparent solid;
+
+    @media only screen and (max-width: 26.563em) {
+      padding: 1.72rem 0 1.72rem 0;
+    }
   }
 
   &:hover,
