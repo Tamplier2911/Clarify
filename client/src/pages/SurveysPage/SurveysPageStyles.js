@@ -24,6 +24,6 @@ export const SurveyPageCampaigns = styled.div`
   background-color: #f3f3f3;
 
   @media only screen and (max-width: 26.563em) {
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
   }
 `;
