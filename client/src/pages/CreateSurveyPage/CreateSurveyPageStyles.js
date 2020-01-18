@@ -11,17 +11,12 @@ export const CreateSurveyPageContainer = styled.div`
   background-color: #f3f3f3;
 `;
 
-export const CreateSurveyFormWrapper = styled.div`
+export const CreateSurveyPageFormWrapper = styled.div`
   display: grid;
   grid-row-gap: 2rem;
 `;
 
-export const CreateSurveyForm = styled.form`
-  display: grid;
-  grid-row-gap: 4rem;
-`;
-
-export const CreateSurveyTitle = styled.h2`
+export const CreateSurveyPageTitle = styled.h2`
   font-size: 2rem;
   font-weight: 400;
 `;
@@ -31,13 +26,13 @@ export const CreateSurveyCreditWrapper = styled.div`
   grid-row-gap: 3rem;
 `;
 
-export const CreateSurveyDescriptor = styled.span`
+export const CreateSurveyPageDescriptor = styled.span`
   display: grid;
   grid-template-columns: min-content 1fr;
   align-items: center;
 `;
 
-export const CreateSurveyBulletPoint = styled.div`
+export const CreateSurveyPageBulletPoint = styled.div`
   height: 1rem;
   width: 1rem;
   border-radius: 50%;

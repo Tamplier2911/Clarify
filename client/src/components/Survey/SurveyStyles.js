@@ -32,6 +32,8 @@ export const SurveyDescription = styled.div`
   }
 `;
 
+export const SurveyStartingDate = styled.p``;
+
 export const SurveyContainer = styled.div`
   cursor: pointer;
   display: grid;

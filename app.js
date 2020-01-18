@@ -20,8 +20,9 @@ const enforce = require("express-sslify");
 // error handlers here
 
 // routes
-const paymentRouter = require("./routes/paymentRoutes");
+const surveyRouter = require("./routes/surveyRoutes");
 const userRouter = require("./routes/userRoutes");
+const paymentRouter = require("./routes/paymentRoutes");
 
 const app = express();
 app.enable("trust proxy");
@@ -59,6 +60,7 @@ app.use((req, res, next) => {
 });
 
 // ROUTES
+app.use("/api/v1/surveys", surveyRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/payment", paymentRouter);
 

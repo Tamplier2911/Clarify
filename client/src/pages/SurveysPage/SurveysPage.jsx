@@ -20,6 +20,11 @@ const SurveysPage = () => {
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           range={{ start: 20, end: 80 }}
           participants="9873"
+          date={new Date().toLocaleString("en-us", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          })}
         />
         <Survey
           name="Second Campaign"
@@ -32,6 +37,11 @@ const SurveysPage = () => {
           officia deserunt mollit anim id est laborum."
           range={{ start: 37, end: 63 }}
           participants="6321"
+          date={new Date().toLocaleString("en-us", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          })}
         />
         <Survey
           name="Second Campaign"
@@ -43,24 +53,44 @@ const SurveysPage = () => {
           Excepteur sint occaecat cupidatat non proident."
           range={{ start: 17, end: 63 }}
           participants="6321"
+          date={new Date().toLocaleString("en-us", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          })}
         />
         <Survey
           name="First Campaign"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          range={{ start: 20, end: 80 }}
-          participants="9873"
+          range={{ start: 28, end: 72 }}
+          participants="973"
+          date={new Date().toLocaleString("en-us", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          })}
         />
         <Survey
           name="First Campaign"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          range={{ start: 20, end: 80 }}
-          participants="9873"
+          range={{ start: 12, end: 88 }}
+          participants="1873"
+          date={new Date().toLocaleString("en-us", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          })}
         />
         <Survey
           name="First Campaign"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          range={{ start: 20, end: 80 }}
-          participants="9873"
+          range={{ start: 7, end: 93 }}
+          participants="6773"
+          date={new Date().toLocaleString("en-us", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          })}
         />
       </SurveyPageCampaigns>
     </SurveyPageContainer>
