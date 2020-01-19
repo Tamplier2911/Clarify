@@ -9,32 +9,8 @@ const {
   deleteOne
 } = require("./handlerFactory");
 
+// get all users
 exports.getAllUsers = getAll(User);
-
-exports.getMe = (req, res, next) => {
-  req.params.id = req.user._id;
-  next();
-};
-
-exports.getUserObject = catchAsync(async (req, res, next) => {
-  let query = User.findById(req.params.id);
-  const document = await query;
-  console.log(document);
-  if (!document) {
-    return res.status(404).json({
-      status: 404,
-      error: "Not Found",
-      message: "No document found with that ID."
-    });
-  }
-
-  res.status(200).json({
-    status: "success",
-    data: {
-      data: document
-    }
-  });
-});
 
 // get single user by id
 exports.getSingleUser = getOne(User);

@@ -14,9 +14,16 @@ exports.postStripePayment = async (req, res, next) => {
       res.status(500).send({ error: stripeErr });
     } else {
       try {
-        await User.findByIdAndUpdate(req.user._id, {
-          credits: req.user.credits + req.body.price
-        });
+        await User.findByIdAndUpdate(
+          req.user._id,
+          {
+            credits: req.user.credits + req.body.price
+          },
+          {
+            new: true,
+            runValidators: true
+          }
+        );
         res.status(200).send({ success: stripeRes });
       } catch (error) {
         console.log(error.message, "Something wrong with DB query!");

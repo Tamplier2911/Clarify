@@ -1,4 +1,5 @@
 const catchAsync = require("../utils/catchAsync");
+const APIFeatures = require("../utils/apiFeatures");
 
 exports.deleteOne = Model =>
   catchAsync(async (req, res, next) => {
@@ -80,6 +81,13 @@ exports.getAll = Model =>
     // Nested route GET review allowance
     let filter = {};
     if (req.params.tourId) filter = { tour: req.params.tourId };
+
+    // BUILD THE QUERY
+    const features = new APIFeatures(Model.find(filter), req.query)
+      .filter()
+      .sort()
+      .limit()
+      .paginate();
 
     // EXECUTE THE QUERY (await)
     const document = await features.query;

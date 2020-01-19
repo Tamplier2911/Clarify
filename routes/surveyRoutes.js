@@ -1,8 +1,12 @@
 const express = require("express");
 
-const {} = require("../controllers/surveyController");
-const { protect } = require("../controllers/authController");
-//   const { protect, restrictTo } = require('../controllers/authController');
+const {
+  getAllSurveys,
+  getAllUserSurveys,
+  createOneSurvey
+} = require("../controllers/surveyController");
+
+const { protect, restrictTo } = require("../controllers/authController");
 
 const router = express.Router();
 
@@ -11,13 +15,14 @@ router.route("/").get((req, res, next) => next());
 // PROTECTED
 router.use(protect);
 
-// RESTRICTED
-// router.use(restrictTo('admin', 'lead-guide'));
+router
+  .route("/")
+  .get(getAllUserSurveys)
+  .post(createOneSurvey);
 
-// router
-//   .route('/')
-//   .get(getAllSurveys)
-//   .post(createOneSurvey);
+// RESTRICTED
+router.use(restrictTo("admin"));
+router.route("/").get(getAllSurveys);
 
 // router
 //   .route('/:id')

@@ -4,10 +4,8 @@ const router = express.Router();
 // user controller
 const {
   getAllUsers,
-  getMe,
   createNewUser,
   getSingleUser,
-  getUserObject,
   updateUser,
   deleteUser
 } = require("../controllers/userController");
@@ -21,14 +19,13 @@ const {
   isLoggedIn
 } = require("./../controllers/authController");
 
-router.get("/isLoggedIn", isLoggedIn);
-
 router.post("/signup", signup);
 router.post("/login", login);
 router.get("/logout", logout);
 
 // PROTECTED
 router.use(protect);
+router.get("/isLoggedIn", isLoggedIn);
 // router.get("/me", getMe, getSingleUser);
 
 // RESTRICTED

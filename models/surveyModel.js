@@ -1,5 +1,12 @@
 const mongoose = require("mongoose");
+const participantSchema = require("./participantModel");
 // const validator = require("validator");
+
+// name - string req
+// desc - string req
+// body - string req
+// part - array of emails
+// user - creator of survey id
 
 const surveySchema = new mongoose.Schema(
   {
@@ -31,11 +38,12 @@ const surveySchema = new mongoose.Schema(
       minlength: [1, "Body must not consists of less than 1 characters."]
     },
     participants: {
-      type: [String],
+      type: [participantSchema],
       required: [
         true,
         "Survey must have a participants array, that emails will be sent to."
-      ]
+      ],
+      select: false // TEMPORARY
     },
     participantsEnrolled: {
       type: Number,
@@ -55,6 +63,7 @@ const surveySchema = new mongoose.Schema(
     },
     user: {
       type: mongoose.Schema.ObjectId,
+      // type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: [true, "Survey must belong to a User."]
     }
