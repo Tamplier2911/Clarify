@@ -28,21 +28,36 @@ exports.createOneSurvey = catchAsync(async (req, res, next) => {
 
   // check if user have enough money to purchase survey
   if (req.user.credits < 100)
-    return res.status(400).json({
-      status: 400,
-      error: "Bad Request",
+    return res.status(403).json({
+      status: 403,
+      error: "Forbidden",
       message:
         "You have not enough credits to purchase a survey, please add more credits."
     });
 
+  const surveyBody = {
+    name: req.body.name,
+    description: req.body.description,
+    body: req.body.body,
+    // participants: req.body.participants || {},
+    participants: req.body.participants
+      ? req.body.participants.split(",").map(email => ({ email: email.trim() }))
+      : {},
+    user: _id
+  };
+
+  console.log(surveyBody);
+
   // create survey
-  const survey = await Survey.create(req.body);
-  res.status(201).json({
-    status: "success",
-    data: {
-      data: survey
-    }
-  });
+  const survey = await Survey.create(surveyBody);
+
+  if (!survey) {
+    return res.status(400).json({
+      status: 400,
+      error: "Bad Request",
+      message: "Survey was not created, please try again."
+    });
+  }
 
   // charge user once survey is created
   await User.findByIdAndUpdate(
@@ -53,6 +68,13 @@ exports.createOneSurvey = catchAsync(async (req, res, next) => {
       runValidators: true
     }
   );
+
+  res.status(201).json({
+    status: "success",
+    data: {
+      data: survey
+    }
+  });
 });
 
 // get all surveys available, strict to admin
