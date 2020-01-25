@@ -1,0 +1,20 @@
+/*
+.textInput {
+  &__container {
+    position: relative;
+    grid-column: 1/-1;
+  }
+
+  &__area {
+    display: grid;
+    width: 100%;
+    resize: none;
+    border-color: #f09999;
+    color: #d56363;
+
+    &:focus {
+      outline: 0.1rem #d56363 solid;
+    }
+  }
+}
+*/

@@ -2,8 +2,12 @@
 import React, { useState } from "react";
 
 import FormInput from "../../components/FormInput/FormInput";
-import FileInput from "../../components/FileInput/FileInput";
+import TextInput from "../../components/TextInput/TextInput";
 import Button from "../../components/Button/Button";
+
+// Redux
+import { connect } from "react-redux";
+import { createSurveyStart } from "../../redux/survey/survey-actions";
 
 // JS Rendering CSS
 import {
@@ -12,43 +16,42 @@ import {
   CreateSurveyFormForm
 } from "./CreateSurveyFormStyles";
 
-const CreateSurveyForm = () => {
+const CreateSurveyForm = ({ createSurveyStart }) => {
   const [campaignInfo, setCampaignInfo] = useState({
     campaignName: "",
     campaignDescription: "",
     campaignBody: "",
-    campaignParticipants: null
+    campaignParticipants: ""
   });
 
-  const { campaignName, campaignDescription, campaignBody } = campaignInfo;
+  const {
+    campaignName,
+    campaignDescription,
+    campaignBody,
+    campaignParticipants
+  } = campaignInfo;
 
   const onInputChange = e => {
-    const { name, value, files } = e.target;
-    if (name === "campaignParticipants") {
-      console.log(files[0]);
-      // if (files[0] && files[0].type === "text/csv") {
-      // .replace(/(?:\r?\n|\r)+/g, ",")
-      if (files[0] && files[0].name.endsWith(".csv")) {
-        setCampaignInfo({ ...campaignInfo, [name]: files[0] });
-      } else {
-        alert("File must be in .csv format.");
-        setCampaignInfo({ ...campaignInfo, [name]: "" });
-      }
-    } else {
-      setCampaignInfo({ ...campaignInfo, [name]: value });
-    }
+    const { name, value } = e.target;
+    setCampaignInfo({ ...campaignInfo, [name]: value });
   };
 
   const onSubmit = async e => {
     e.preventDefault();
-    // createNewCampaignStart()
+    createSurveyStart({
+      name: campaignName,
+      description: campaignDescription,
+      body: campaignBody,
+      participants: campaignParticipants
+    });
+    setCampaignInfo({
+      campaignName: "",
+      campaignDescription: "",
+      campaignBody: "",
+      campaignParticipants: ""
+    });
   };
 
-  // name -- headline
-  // description -- what about
-  // body -- what user see
-  // participants -- compa separated file of user emails
-  console.log(campaignInfo);
   return (
     <CreateSurveyFormWrapper>
       <CreateSurveyFormTitle>Create new Campaign:</CreateSurveyFormTitle>
@@ -77,13 +80,14 @@ const CreateSurveyForm = () => {
           type="text"
           required
         />
-        <FileInput
-          onInputChange={e => onInputChange(e)}
-          label="Upload Participants.csv"
-          name="campaignParticipants"
-          type="file"
-          id="inputform"
+        <TextInput
           required
+          rows="6"
+          onChange={e => onInputChange(e)}
+          name="campaignParticipants"
+          value={campaignParticipants}
+          max="300"
+          placeholder="*Insert up to ten email addresses separated by comma."
         />
         <Button type="submit" description="Create New Campaign" />
       </CreateSurveyFormForm>
@@ -91,4 +95,4 @@ const CreateSurveyForm = () => {
   );
 };
 
-export default CreateSurveyForm;
+export default connect(null, { createSurveyStart })(CreateSurveyForm);

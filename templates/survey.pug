@@ -1,0 +1,20 @@
+extends baseEmail
+
+block content
+    p Hey there, stranger!
+    p You have been chosen to participate in a survey!
+    p Please, answer following question by simply clicking "yes" or "no" buttons bellow.
+    p &nbsp;
+    p #{data.body}
+    table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
+        tbody
+            tr
+                td(align='left')
+                    table(role='presentation', border='0', cellpadding='0', cellspacing='0')
+                        tbody
+                            tr
+                                td
+                                    a(href=`${url}`, target='_blank') No
+                                    a(href=`${url}`, target='_blank') Yes
+    p Thank you for your time and honesty, we appreciate that! Best of luck!
+    p - Survey Team @ Clarify.com

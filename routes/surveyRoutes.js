@@ -3,7 +3,10 @@ const express = require("express");
 const {
   getAllSurveys,
   getAllUserSurveys,
-  createOneSurvey
+  createOneSurvey,
+  getOneSurvey,
+  updateOneSurvey,
+  deleteOneSurvey
 } = require("../controllers/surveyController");
 
 const { protect, restrictTo } = require("../controllers/authController");
@@ -24,10 +27,10 @@ router
 router.use(restrictTo("admin"));
 router.route("/").get(getAllSurveys);
 
-// router
-//   .route('/:id')
-//   .get(getOneSurvey)
-//   .patch(updateOneSurvey)
-//   .delete(deleteOneSurvey);
+router
+  .route("/:id")
+  .get(getOneSurvey)
+  .patch(updateOneSurvey)
+  .delete(deleteOneSurvey);
 
 module.exports = router;

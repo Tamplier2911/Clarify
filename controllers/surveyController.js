@@ -2,6 +2,9 @@ const User = require("../models/userModel");
 const Survey = require("../models/surveyModel");
 const catchAsync = require("../utils/catchAsync");
 
+const Mailer = require("../utils/Mailer");
+const surveyTemplate = require("../templates/surveyEmailTemplate");
+
 const {
   getAll,
   getOne,
@@ -40,8 +43,18 @@ exports.createOneSurvey = catchAsync(async (req, res, next) => {
     description: req.body.description,
     body: req.body.body,
     // participants: req.body.participants || {},
+    /*
     participants: req.body.participants
-      ? req.body.participants.split(",").map(email => ({ email: email.trim() }))
+      ? req.body.participants.split(",").map(email => ({ email: email.toLowerCase().trim() }))
+      : {},
+    */
+    // this logic will not allow request if more than 10 participants listed | for testing purpuses
+    participants: req.body.participants
+      ? req.body.participants.split(",").length > 10
+        ? {}
+        : req.body.participants
+            .split(",")
+            .map(email => ({ email: email.toLowerCase().trim() }))
       : {},
     user: _id
   };
@@ -59,7 +72,38 @@ exports.createOneSurvey = catchAsync(async (req, res, next) => {
     });
   }
 
-  // charge user once survey is created
+  // send email
+  // using selfmade js templates
+  urls = {
+    yes: "https://clarify-s.herokuapp.com/",
+    no: "https://clarify-s.herokuapp.com/"
+  };
+  // urls = {
+  //   yes: "https://clarify-s.herokuapp.com/api/v1/surveys/:id/yes",
+  //   no: "https://clarify-s.herokuapp.com/api/v1/surveys/:id/no"
+  // };
+
+  // create route for res.send('Thank for participating in a survey! You gained +100 to your karma!')
+
+  const mailer = new Mailer(survey, surveyTemplate(survey, urls));
+
+  // using pug templates
+  // const mailer = new Mailer(survey, "survey");
+  const sendgridResponse = await mailer.send();
+
+  // if we had bad request - do not charge user, delete instance of survey
+  if (![200, 201, 202].includes(sendgridResponse.statusCode)) {
+    await Survey.findByIdAndDelete(survey._id);
+
+    return res.status(400).json({
+      status: 400,
+      error: "Bad Request",
+      message:
+        "Something went wrong with email service, please try again later."
+    });
+  }
+
+  // if survey created and emails were send charge user
   await User.findByIdAndUpdate(
     _id,
     { credits: credits - 100 },
@@ -80,21 +124,11 @@ exports.createOneSurvey = catchAsync(async (req, res, next) => {
 // get all surveys available, strict to admin
 exports.getAllSurveys = getAll(Survey);
 
-/*
+// get single survey by id, strict to admin
+exports.getOneSurvey = getOne(Survey);
 
-// get all users
-exports.getAllUsers = getAll(User);
+// delete survey using id, strict to admin
+exports.deleteOneSurvey = deleteOne(Survey);
 
-// get single user by id
-exports.getSingleUser = getOne(User);
-
-// create user
-exports.createNewUser = createOne(User);
-
-// delete user using id
-exports.deleteUser = deleteOne(User);
-
-// update user using id - do NOT update pw with this.
-exports.updateUser = updateOne(User);
-
-*/
+// update survey using id, strict to admin
+exports.updateOneSurvey = updateOne(Survey);
