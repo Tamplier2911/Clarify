@@ -1,13 +1,27 @@
 import surveyTypes from "./survey-types";
 
 const {
-  //   FETCH_USER_SURVEYS_START,
-  //   FETCH_USER_SURVEYS_SUCCESS,
-  //   FETCH_USER_SURVEYS_FAILURE,
+  FETCH_USER_SURVEYS_START,
+  FETCH_USER_SURVEYS_SUCCESS,
+  FETCH_USER_SURVEYS_FAILURE,
   CREATE_SURVEY_START,
   CREATE_SURVEY_SUCCESS,
   CREATE_SURVEY_FAILURE
 } = surveyTypes;
+
+export const fetchUserSurveysStart = () => ({
+  type: FETCH_USER_SURVEYS_START
+});
+
+export const fetchUserSurveysSuccess = surveysArray => ({
+  type: FETCH_USER_SURVEYS_SUCCESS,
+  payload: surveysArray
+});
+
+export const fetchUserSurveysFailure = errorMessage => ({
+  type: FETCH_USER_SURVEYS_FAILURE,
+  payload: errorMessage
+});
 
 export const createSurveyStart = formInputs => ({
   type: CREATE_SURVEY_START,

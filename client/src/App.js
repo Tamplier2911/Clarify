@@ -1,7 +1,6 @@
 import "./App.scss";
 import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-// import { Switch, Route, Redirect } from "react-router-dom";
 
 // redux
 import { connect } from "react-redux";
@@ -34,20 +33,17 @@ const App = ({ currentUser, fetchAuthObjectStart }) => {
       <AppMain>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          {/* <Route exact path="/surveys" render={() => <SurveyPage />} /> */}
           <Route
             exact
             path="/surveys"
             render={() => (!currentUser ? <Redirect to="/" /> : <SurveyPage />)}
           />
-          {/* <Route path="/surveys/new" render={() => <CreateSurveyPage />} /> */}
           <Route
             path="/surveys/new"
             render={() =>
               !currentUser ? <Redirect to="/" /> : <CreateSurveyPage />
             }
           />
-          {/* <Route exact path="/signup" render={() => <SignUpPage />} /> */}
           <Route
             exact
             path="/signup"
@@ -67,15 +63,3 @@ const mapStateToPropes = createStructuredSelector({
 });
 
 export default connect(mapStateToPropes, { fetchAuthObjectStart })(App);
-
-// <Route
-//     exact
-//     path="/surveys"
-//     render={() => (!currentUser ? <Redirect to="/" /> : <SurveyPage />)}
-//   />
-//   <Route
-//     path="/surveys/new"
-//     render={() =>
-//       !currentUser ? <Redirect to="/" /> : <CreateSurveyPage />
-//     }
-//   />

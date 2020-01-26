@@ -25,7 +25,7 @@ router
 
 // RESTRICTED
 router.use(restrictTo("admin"));
-router.route("/").get(getAllSurveys);
+router.route("/all").get(getAllSurveys);
 
 router
   .route("/:id")

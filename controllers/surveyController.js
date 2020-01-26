@@ -59,7 +59,7 @@ exports.createOneSurvey = catchAsync(async (req, res, next) => {
     user: _id
   };
 
-  console.log(surveyBody);
+  // console.log(surveyBody);
 
   // create survey
   const survey = await Survey.create(surveyBody);

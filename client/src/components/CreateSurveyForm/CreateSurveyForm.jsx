@@ -5,6 +5,8 @@ import FormInput from "../../components/FormInput/FormInput";
 import TextInput from "../../components/TextInput/TextInput";
 import Button from "../../components/Button/Button";
 
+import { withRouter } from "react-router-dom";
+
 // Redux
 import { connect } from "react-redux";
 import { createSurveyStart } from "../../redux/survey/survey-actions";
@@ -16,7 +18,7 @@ import {
   CreateSurveyFormForm
 } from "./CreateSurveyFormStyles";
 
-const CreateSurveyForm = ({ createSurveyStart }) => {
+const CreateSurveyForm = ({ createSurveyStart, history }) => {
   const [campaignInfo, setCampaignInfo] = useState({
     campaignName: "",
     campaignDescription: "",
@@ -50,6 +52,7 @@ const CreateSurveyForm = ({ createSurveyStart }) => {
       campaignBody: "",
       campaignParticipants: ""
     });
+    history.push("/surveys");
   };
 
   return (
@@ -95,4 +98,6 @@ const CreateSurveyForm = ({ createSurveyStart }) => {
   );
 };
 
-export default connect(null, { createSurveyStart })(CreateSurveyForm);
+export default connect(null, { createSurveyStart })(
+  withRouter(CreateSurveyForm)
+);

@@ -22,7 +22,11 @@ const Survey = ({ name, description, date, range, participants }) => {
   // (132 + 432) / 100 = 5.64
   // 132 / 5.64 = 23.404255319148938
   // 432 / 5.64 = 76.59574468085107
-  // dont forget to floor the number to cut of floating point
+  // dont forget to round the number to cut of floating point
+  const percentOfOne = (range.start + range.end) / 100;
+  const percentOfStart = Math.round(range.start / percentOfOne);
+  const percentOfEnd = Math.round(range.end / percentOfOne);
+  range = { start: percentOfStart, end: percentOfEnd };
   return (
     <SurveyContainer>
       <SurveyName>{name}</SurveyName>
@@ -30,9 +34,9 @@ const Survey = ({ name, description, date, range, participants }) => {
         {description}
         <SurveyStartingDate>Started: {date}</SurveyStartingDate>
       </SurveyDescription>
-      <SurveyProgress range={range}>
-        <SurveyPercentageStart>{range.start}%</SurveyPercentageStart>
-        <SurveyPercentageEnd>{range.end}%</SurveyPercentageEnd>
+      <SurveyProgress range={range.start ? range : { start: 50, end: 50 }}>
+        <SurveyPercentageStart>{range.start || 0}%</SurveyPercentageStart>
+        <SurveyPercentageEnd>{range.end || 0}%</SurveyPercentageEnd>
       </SurveyProgress>
       <SurveyParticipants>
         Number of participants enrolled: {participants}
