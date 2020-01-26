@@ -14,8 +14,8 @@ const surveySchema = new mongoose.Schema(
       type: String,
       required: [true, "Please, enter survey name."],
       trim: true,
-      maxlength: [30, "Name must not consists of more than 30 characters."],
-      minlength: [1, "Name must not consists of less than 1 characters."]
+      maxlength: [30, "Name must not consists of less than 30 characters."],
+      minlength: [1, "Name must not consists of more than 1 characters."]
     },
     description: {
       type: String,
@@ -23,9 +23,9 @@ const surveySchema = new mongoose.Schema(
       trim: true,
       maxlength: [
         300,
-        "Description must not consists of more than 300 characters."
+        "Description must not consists of less than 300 characters."
       ],
-      minlength: [1, "Description must not consists of less than 1 characters."]
+      minlength: [1, "Description must not consists of more than 1 characters."]
     },
     body: {
       type: String,
@@ -34,8 +34,8 @@ const surveySchema = new mongoose.Schema(
         "Survey must have a body, which will be presented to a participants."
       ],
       trim: true,
-      maxlength: [200, "Body must not consists of more than 200 characters."],
-      minlength: [1, "Body must not consists of less than 1 characters."]
+      maxlength: [200, "Body must not consists of less than 200 characters."],
+      minlength: [1, "Body must not consists of more than 1 characters."]
     },
     participants: {
       type: [participantSchema],

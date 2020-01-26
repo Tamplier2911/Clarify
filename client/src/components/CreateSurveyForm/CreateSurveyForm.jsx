@@ -39,7 +39,7 @@ const CreateSurveyForm = ({ createSurveyStart, history }) => {
   };
 
   const onSubmit = async e => {
-    e.preventDefault();
+    await e.preventDefault();
     createSurveyStart({
       name: campaignName,
       description: campaignDescription,

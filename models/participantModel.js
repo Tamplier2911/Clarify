@@ -6,7 +6,7 @@ const participantSchema = new mongoose.Schema({
     type: String,
     required: [true, "Participant must have an email."],
     trim: true,
-    unique: true,
+    // unique: true,
     lowercase: true,
     validate: [validator.isEmail, "Email must match validation"]
   },
