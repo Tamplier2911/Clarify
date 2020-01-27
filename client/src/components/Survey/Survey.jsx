@@ -1,6 +1,8 @@
 // import "./Survey.scss";
 import React from "react";
 
+import { withRouter } from "react-router-dom";
+
 // JS Rendering CSS
 import {
   SurveyContainer,
@@ -13,7 +15,15 @@ import {
   SurveyParticipants
 } from "./SurveyStyles";
 
-const Survey = ({ name, description, date, range, participants }) => {
+const Survey = ({
+  name,
+  description,
+  date,
+  range,
+  participants,
+  surveyId,
+  match: { path }
+}) => {
   // range.start - positiveFeed
   // range.end - negativeFeed
   // range.start + range.end / 100 = 1% of feeds
@@ -28,7 +38,7 @@ const Survey = ({ name, description, date, range, participants }) => {
   const percentOfEnd = Math.round(range.end / percentOfOne);
   range = { start: percentOfStart, end: percentOfEnd };
   return (
-    <SurveyContainer>
+    <SurveyContainer to={`${path}/${surveyId}`}>
       <SurveyName>{name}</SurveyName>
       <SurveyDescription>
         {description}
@@ -45,4 +55,4 @@ const Survey = ({ name, description, date, range, participants }) => {
   );
 };
 
-export default Survey;
+export default withRouter(Survey);

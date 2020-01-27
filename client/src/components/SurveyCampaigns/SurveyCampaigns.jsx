@@ -11,6 +11,7 @@ const SurveyCampaigns = ({ surveys }) => {
       {surveys.map(survey => {
         return (
           <Survey
+            surveyId={survey._id}
             name={survey.name}
             description={survey.description}
             range={{ start: survey.negativeFeed, end: survey.positiveFeed }}

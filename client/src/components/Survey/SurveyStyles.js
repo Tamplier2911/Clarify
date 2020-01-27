@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
+
 const getPercentage = ({ range }) => {
   return `grid-template-columns: ${range.start}fr ${range.end}fr`;
 };
@@ -34,22 +36,29 @@ export const SurveyDescription = styled.div`
 
 export const SurveyStartingDate = styled.p``;
 
-export const SurveyContainer = styled.div`
+export const SurveyContainer = styled(Link)`
+  
   cursor: pointer;
   display: grid;
   grid-row-gap: 2rem;
   grid-template-columns: 1fr;
   grid-template-rows: min-content 1fr repeat(2, min-content);
 
-  border: 0.1rem #efaaad solid;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  background-color: #fff;
-  box-shadow: 0 1rem 2rem #0000002f;
+  &:link,
+  &:visited {
+    border: 0.1rem #efaaad solid;
+    border-radius: 0.4rem;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 1rem 2rem #0000002f;
+    color: #333;
 
-  transition: transform 0.2s, height 1s;
+    text-decoration: none;
+    transition: transform 0.2s, height 1s;
+  }
 
-  &:hover {
+  &:hover,
+  &:active {
     box-shadow: 0 1rem 3rem #00000038;
     transform: scale(1.02);
   }

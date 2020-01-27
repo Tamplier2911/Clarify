@@ -17,8 +17,10 @@ const SurveyCampaignsWithSpinner = WithSpinner(SurveyCampaigns);
 
 const SurveysPage = ({ fetchUserSurveysStart, surveys }) => {
   useEffect(() => {
-    fetchUserSurveysStart();
-  }, [fetchUserSurveysStart]);
+    if (!surveys.length) {
+      fetchUserSurveysStart();
+    }
+  }, [fetchUserSurveysStart, surveys.length]);
 
   return (
     <SurveyPageContainer>

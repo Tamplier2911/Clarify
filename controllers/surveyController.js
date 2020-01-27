@@ -91,6 +91,8 @@ exports.createOneSurvey = catchAsync(async (req, res, next) => {
   // const mailer = new Mailer(survey, "survey");
   const sendgridResponse = await mailer.send();
 
+  // console.log(sendgridResponse);
+
   // if we had bad request - do not charge user, delete instance of survey
   if (![200, 201, 202].includes(sendgridResponse.statusCode)) {
     await Survey.findByIdAndDelete(survey._id);

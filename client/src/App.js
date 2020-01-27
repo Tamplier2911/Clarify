@@ -18,6 +18,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import SurveyPage from "./pages/SurveysPage/SurveysPage";
 import CreateSurveyPage from "./pages/CreateSurveyPage/CreateSurveyPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import SingleSurveyPage from "./pages/SingleSurveyPage/SingleSurveyPage";
 
 // JS Rendering CSS
 import { AppContainer, AppMain } from "./AppStyles";
@@ -39,9 +40,16 @@ const App = ({ currentUser, fetchAuthObjectStart }) => {
             render={() => (!currentUser ? <Redirect to="/" /> : <SurveyPage />)}
           />
           <Route
+            exact
             path="/surveys/new"
             render={() =>
               !currentUser ? <Redirect to="/" /> : <CreateSurveyPage />
+            }
+          />
+          <Route
+            path="/surveys/:id"
+            render={() =>
+              !currentUser ? <Redirect to="/" /> : <SingleSurveyPage />
             }
           />
           <Route
