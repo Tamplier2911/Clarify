@@ -6,7 +6,10 @@ const {
   FETCH_USER_SURVEYS_FAILURE,
   CREATE_SURVEY_START,
   CREATE_SURVEY_SUCCESS,
-  CREATE_SURVEY_FAILURE
+  CREATE_SURVEY_FAILURE,
+  CLEAN_SURVEYS_DATA_START,
+  CLEAN_SURVEYS_DATA_SUCCESS,
+  CLEAN_SURVEYS_DATA_FAILURE
 } = surveyTypes;
 
 export const fetchUserSurveysStart = () => ({
@@ -36,4 +39,16 @@ export const createSurveySuccess = surveyObject => ({
 export const createSurveyFailure = errorMessage => ({
   type: CREATE_SURVEY_FAILURE,
   payload: errorMessage
+});
+
+export const cleanSurveysDataStart = () => ({
+  type: CLEAN_SURVEYS_DATA_START
+});
+
+export const cleanSurveysDataSuccess = () => ({
+  type: CLEAN_SURVEYS_DATA_SUCCESS
+});
+
+export const cleanSurveysDataFailure = () => ({
+  type: CLEAN_SURVEYS_DATA_FAILURE
 });

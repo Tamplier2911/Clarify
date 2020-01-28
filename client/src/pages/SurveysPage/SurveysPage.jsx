@@ -3,7 +3,10 @@ import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
 import { fetchUserSurveysStart } from "../../redux/survey/survey-actions";
-import { selectUserSurveys } from "../../redux/survey/survey-selectors";
+import {
+  selectUserSurveys,
+  selectSurveyLoadingStatus
+} from "../../redux/survey/survey-selectors";
 import { createStructuredSelector } from "reselect";
 
 import WithSpinner from "../../components/WithSpinner/WithSpinner";
@@ -15,7 +18,7 @@ import { SurveyPageContainer, SurveyPageTitle } from "./SurveysPageStyles";
 // buff SurveyCampaigns with spinner
 const SurveyCampaignsWithSpinner = WithSpinner(SurveyCampaigns);
 
-const SurveysPage = ({ fetchUserSurveysStart, surveys }) => {
+const SurveysPage = ({ fetchUserSurveysStart, surveys, isLoading }) => {
   useEffect(() => {
     if (!surveys.length) {
       fetchUserSurveysStart();
@@ -25,16 +28,14 @@ const SurveysPage = ({ fetchUserSurveysStart, surveys }) => {
   return (
     <SurveyPageContainer>
       <SurveyPageTitle>Currentlty active survey campaigns:</SurveyPageTitle>
-      <SurveyCampaignsWithSpinner
-        isLoading={!surveys.length}
-        surveys={surveys}
-      />
+      <SurveyCampaignsWithSpinner isLoading={isLoading} data={surveys} />
     </SurveyPageContainer>
   );
 };
 
 const mapStateToProps = createStructuredSelector({
-  surveys: selectUserSurveys
+  surveys: selectUserSurveys,
+  isLoading: selectSurveyLoadingStatus
 });
 
 export default connect(mapStateToProps, { fetchUserSurveysStart })(SurveysPage);

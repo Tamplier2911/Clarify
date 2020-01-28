@@ -1,6 +1,8 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
 import axios from "axios";
 
+import { popModal } from "../../utils/popupUtil";
+
 import {
   fetchAuthObjectStart,
   fetchAuthObjectSuccess,
@@ -13,6 +15,8 @@ import {
   signUserUpFailure
 } from "./auth-actions";
 import authTypes from "./auth-types";
+
+import { cleanSurveysDataStart } from "../survey/survey-actions";
 
 const {
   FETCH_AUTH_OBJECT_START,
@@ -30,7 +34,6 @@ export function* fetchAuthObject() {
     yield put(fetchAuthObjectSuccess(res.data.data.data));
   } catch (error) {
     yield put(fetchAuthObjectFailure(error.message));
-    yield alert(error.message);
   }
 }
 
@@ -48,7 +51,6 @@ export function* logUserIn({ payload }) {
     yield put(fetchAuthObjectStart());
   } catch (error) {
     yield put(logUserInFailure(error.message));
-    yield alert(error.message);
   }
 }
 
@@ -60,9 +62,9 @@ export function* logUserOut() {
     });
     yield put(logUserOutSuccess(false));
     yield put(fetchAuthObjectStart());
+    yield put(cleanSurveysDataStart());
   } catch (error) {
     yield put(logUserOutFailure(error.message));
-    yield alert(error.message);
   }
 }
 
@@ -80,9 +82,10 @@ export function* signUserUp({ payload }) {
     });
     yield put(signUserUpSuccess(true));
     yield put(fetchAuthObjectStart());
+    popModal("Congratulations, you have successfully registered!");
   } catch (error) {
     yield put(signUserUpFailure(error.message));
-    yield alert(error.message);
+    popModal("Something went wrong, please try again later!");
   }
 }
 

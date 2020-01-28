@@ -12,6 +12,7 @@ import { selectAuthObject } from "./redux/auth/auth-selectors";
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 import Footer from "./components/Footer/Footer";
+import Modal from "./components/Modal/Modal";
 
 // pages
 import HomePage from "./pages/HomePage/HomePage";
@@ -29,6 +30,7 @@ const App = ({ currentUser, fetchAuthObjectStart }) => {
   }, [fetchAuthObjectStart]);
   return (
     <AppContainer>
+      <Modal />
       {currentUser ? <Header /> : null}
       <Navigation />
       <AppMain>
@@ -55,9 +57,7 @@ const App = ({ currentUser, fetchAuthObjectStart }) => {
           <Route
             exact
             path="/signup"
-            render={() =>
-              currentUser ? <Redirect to="/surveys" /> : <SignUpPage />
-            }
+            render={() => (currentUser ? <Redirect to="/" /> : <SignUpPage />)}
           />
         </Switch>
       </AppMain>

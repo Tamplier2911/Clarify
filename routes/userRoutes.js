@@ -23,9 +23,10 @@ router.post("/signup", signup);
 router.post("/login", login);
 router.get("/logout", logout);
 
+router.get("/isLoggedIn", isLoggedIn);
+
 // PROTECTED
 router.use(protect);
-router.get("/isLoggedIn", isLoggedIn);
 // router.get("/me", getMe, getSingleUser);
 
 // RESTRICTED

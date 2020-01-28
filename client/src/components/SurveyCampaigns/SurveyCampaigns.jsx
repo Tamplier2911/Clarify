@@ -3,12 +3,16 @@ import React from "react";
 import Survey from "../../components/Survey/Survey";
 
 // JS Rendering CSS
-import { SurveyCampaignsContainer } from "./SurveyCampaignsStyles";
+import {
+  SurveyCampaignsContainer,
+  SurveyCampaignContainerBackup,
+  SurveyCampaignNotYet
+} from "./SurveyCampaignsStyles";
 
-const SurveyCampaigns = ({ surveys }) => {
-  return (
+const SurveyCampaigns = ({ data }) => {
+  return data.length ? (
     <SurveyCampaignsContainer>
-      {surveys.map(survey => {
+      {data.map(survey => {
         return (
           <Survey
             surveyId={survey._id}
@@ -26,6 +30,12 @@ const SurveyCampaigns = ({ surveys }) => {
         );
       })}
     </SurveyCampaignsContainer>
+  ) : (
+    <SurveyCampaignContainerBackup>
+      <SurveyCampaignNotYet>
+        You don't have any surveys yet.
+      </SurveyCampaignNotYet>
+    </SurveyCampaignContainerBackup>
   );
 };
 

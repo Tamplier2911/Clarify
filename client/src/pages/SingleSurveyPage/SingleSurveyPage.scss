@@ -1,12 +1,71 @@
+/*
 .singleSurveyPage {
   &__container {
     display: grid;
     align-content: start;
-    grid-row-gap: 2rem;
+    grid-row-gap: 4rem;
     min-height: 84vh;
     // min-height: 70vh;
 
     padding: 2rem;
     background-color: #f3f3f3;
   }
+
+  &__descriptionBlock {
+    display: grid;
+    grid-row-gap: 2rem;
+  }
+
+  &__name {
+    font-size: 2.2rem;
+  }
+  &__description {
+    font-size: 1.8rem;
+  }
+
+  &__dataBlock {
+    display: grid;
+    grid-row-gap: 1rem;
+  }
+
+  &__preText {
+    color: #333;
+  }
+
+  &__body {
+    color: #f08080;
+  }
+
+  &__feedNeg {
+    border-radius: 0.4rem;
+    padding: 0.2rem 0.6rem;
+    background-image: linear-gradient(
+      60deg,
+      #fd8484 0%,
+      #fd8484 25%,
+      transparent 25%,
+      transparent 100%
+    );
+  }
+
+  &__feedPos {
+    border-radius: 0.4rem;
+    padding: 0.2rem 0.6rem;
+    background-image: linear-gradient(
+      60deg,
+      #67fdb2 0%,
+      #67fdb2 75%,
+      transparent 75%,
+      transparent 100%
+    );
+  }
+
+  &__totalEnrolled {
+    color: #f08080;
+  }
+
+  &__date {
+    color: #f08080;
+  }
 }
+*/

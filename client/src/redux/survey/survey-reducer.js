@@ -5,7 +5,9 @@ const {
   FETCH_USER_SURVEYS_SUCCESS,
   FETCH_USER_SURVEYS_FAILURE,
   CREATE_SURVEY_SUCCESS,
-  CREATE_SURVEY_FAILURE
+  CREATE_SURVEY_FAILURE,
+  CLEAN_SURVEYS_DATA_SUCCESS,
+  CLEAN_SURVEYS_DATA_FAILURE
 } = surveyTypes;
 
 const INITIAL_STATE = {
@@ -32,7 +34,7 @@ const surveyReducer = (state = INITIAL_STATE, action) => {
     case FETCH_USER_SURVEYS_FAILURE:
       return {
         ...state,
-        allSurveys: null,
+        allSurveys: [],
         errorMessage: action.payload,
         isLoading: false
       };
@@ -47,6 +49,15 @@ const surveyReducer = (state = INITIAL_STATE, action) => {
         ...state,
         newSurvey: null,
         errorMessage: action.payload
+      };
+    case CLEAN_SURVEYS_DATA_SUCCESS:
+    case CLEAN_SURVEYS_DATA_FAILURE:
+      return {
+        ...state,
+        allSurveys: [],
+        newSurvey: null,
+        errorMessage: null,
+        isLoading: false
       };
     default:
       return state;

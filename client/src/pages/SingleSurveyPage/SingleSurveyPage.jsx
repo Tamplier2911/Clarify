@@ -1,4 +1,4 @@
-import "./SingleSurveyPage.scss";
+// import "./SingleSurveyPage.scss";
 import React from "react";
 
 // router
@@ -7,6 +7,21 @@ import { withRouter } from "react-router-dom";
 // redux
 import { connect } from "react-redux";
 import { selectSurveyById } from "../../redux/survey/survey-selectors";
+
+// JS Rendering CSS
+import {
+  SingleSurveyContainer,
+  SingleSurveyDescription,
+  SingleSurveyData,
+  SingleSurveyName,
+  SingleSurveyDesc,
+  SingleSurveyText,
+  SingleSurveyBody,
+  SingleSurveyNegative,
+  SingleSurveyPositive,
+  SingleSurveyTotal,
+  SingleSurveyDate
+} from "./SingleSurveyPageStyles";
 
 const SingleSurveyPage = ({ survey }) => {
   const {
@@ -18,16 +33,41 @@ const SingleSurveyPage = ({ survey }) => {
     negativeFeed,
     participantsEnrolled
   } = survey[0];
+  const percentOfOne = (positiveFeed + negativeFeed) / 100;
+  const percentOfPositive = Math.round(positiveFeed / percentOfOne);
+  const percentOfNegative = Math.round(negativeFeed / percentOfOne);
   return (
-    <div className="singleSurveyPage__container">
-      <div>Survey Name: {name}</div>
-      <div>Survey Description: {description}</div>
-      <div>Survey Body: {body}</div>
-      <div>Survey Created At: {createdAt}</div>
-      <div>Survey Positive Feed: {positiveFeed}</div>
-      <div>Survey Negative Feed: {negativeFeed}</div>
-      <div>Survey Participants Enrolled: {participantsEnrolled}</div>
-    </div>
+    <SingleSurveyContainer>
+      <SingleSurveyDescription>
+        <SingleSurveyName>{name}</SingleSurveyName>
+        <SingleSurveyDesc>{description}</SingleSurveyDesc>
+      </SingleSurveyDescription>
+      <SingleSurveyData>
+        <SingleSurveyBody>
+          <SingleSurveyText>Survey subject:</SingleSurveyText> {body}
+        </SingleSurveyBody>
+        <SingleSurveyNegative negPercent={percentOfNegative || 0}>
+          {percentOfNegative || 0}%
+        </SingleSurveyNegative>
+        <SingleSurveyPositive posPercent={percentOfPositive || 0}>
+          {percentOfPositive || 0}%
+        </SingleSurveyPositive>
+        <SingleSurveyTotal>
+          <SingleSurveyText>
+            Total number of participants enrolled this survey:
+          </SingleSurveyText>{" "}
+          {participantsEnrolled}
+        </SingleSurveyTotal>
+        <SingleSurveyDate>
+          <SingleSurveyText>Survey created at:</SingleSurveyText>{" "}
+          {new Date(createdAt).toLocaleString("en-us", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          })}
+        </SingleSurveyDate>
+      </SingleSurveyData>
+    </SingleSurveyContainer>
   );
 };
 

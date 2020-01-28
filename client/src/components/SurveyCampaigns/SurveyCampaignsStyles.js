@@ -11,3 +11,15 @@ export const SurveyCampaignsContainer = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
   }
 `;
+
+export const SurveyCampaignContainerBackup = styled.div`
+  display: grid;
+  min-height: 62vh;
+  align-content: center;
+  justify-content: center;
+`;
+
+export const SurveyCampaignNotYet = styled.div`
+  // justify-self: center;
+  font-size: 1.8rem;
+`;

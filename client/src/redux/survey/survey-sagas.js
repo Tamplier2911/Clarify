@@ -6,16 +6,20 @@ import {
   createSurveyFailure,
   fetchUserSurveysStart,
   fetchUserSurveysSuccess,
-  fetchUserSurveysFailure
+  fetchUserSurveysFailure,
+  cleanSurveysDataSuccess,
+  cleanSurveysDataFailure
 } from "./survey-actions";
 
 import surveyTypes from "./survey-types";
 
-const { CREATE_SURVEY_START, FETCH_USER_SURVEYS_START } = surveyTypes;
+const {
+  CREATE_SURVEY_START,
+  FETCH_USER_SURVEYS_START,
+  CLEAN_SURVEYS_DATA_START
+} = surveyTypes;
 
 export function* createSurvey({ payload }) {
-  console.log(payload);
-
   try {
     const response = yield axios({
       method: "POST",
@@ -26,7 +30,6 @@ export function* createSurvey({ payload }) {
     yield put(fetchUserSurveysStart());
   } catch (error) {
     yield put(createSurveyFailure(error.message));
-    yield alert(error.message);
   }
 }
 
@@ -39,7 +42,14 @@ export function* fetchUserSurveys() {
     yield put(fetchUserSurveysSuccess(response.data.message));
   } catch (error) {
     yield put(fetchUserSurveysFailure(error.message));
-    yield alert(error.message);
+  }
+}
+
+export function* cleanSurveyData() {
+  try {
+    yield put(cleanSurveysDataSuccess());
+  } catch (error) {
+    yield put(cleanSurveysDataFailure());
   }
 }
 
@@ -51,6 +61,14 @@ export function* onFetchUserSurveysStart() {
   yield takeLatest(FETCH_USER_SURVEYS_START, fetchUserSurveys);
 }
 
+export function* onCleanSurveyDataStart() {
+  yield takeLatest(CLEAN_SURVEYS_DATA_START, cleanSurveyData);
+}
+
 export function* surveySaga() {
-  yield all([call(onCreateSurveyStart), call(onFetchUserSurveysStart)]);
+  yield all([
+    call(onCreateSurveyStart),
+    call(onFetchUserSurveysStart),
+    call(onCleanSurveyDataStart)
+  ]);
 }

@@ -28,10 +28,10 @@ const SignUpForm = ({ signUserUpStart }) => {
     setUserCredentials({ ...userCredentials, [name]: value });
   };
 
-  const onFormSubmit = e => {
+  const onFormSubmit = async e => {
     e.preventDefault();
     if (password === passwordConfirm) {
-      signUserUpStart(userCredentials);
+      await signUserUpStart(userCredentials);
     } else {
       alert("Confirmed Password must be matching original.");
     }
