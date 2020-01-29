@@ -8,6 +8,7 @@ import {
   SurveyContainer,
   SurveyName,
   SurveyDescription,
+  SurveyDesc,
   SurveyStartingDate,
   SurveyProgress,
   SurveyPercentageStart,
@@ -41,7 +42,7 @@ const Survey = ({
     <SurveyContainer to={`${path}/${surveyId}`}>
       <SurveyName>{name}</SurveyName>
       <SurveyDescription>
-        {description}
+        <SurveyDesc>{description}</SurveyDesc>
         <SurveyStartingDate>Started: {date}</SurveyStartingDate>
       </SurveyDescription>
       <SurveyProgress range={range.start ? range : { start: 50, end: 50 }}>
@@ -49,7 +50,7 @@ const Survey = ({
         <SurveyPercentageEnd>{range.end || 0}%</SurveyPercentageEnd>
       </SurveyProgress>
       <SurveyParticipants>
-        Number of participants enrolled: {participants}
+        Participants enrolled: {participants}
       </SurveyParticipants>
     </SurveyContainer>
   );

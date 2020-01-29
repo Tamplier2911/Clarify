@@ -19,8 +19,8 @@ const Modal = ({ info }) => {
   return ReactDOM.createPortal(
     <ModalContainer onClick={onModalInteraction}>
       <ModalWindow onClick={e => e.stopPropagation()}>
-        <ModalHeader> Modal Header</ModalHeader>
-        <ModalInfo id="info">{info}</ModalInfo>
+        <ModalHeader id="modal-head"></ModalHeader>
+        <ModalInfo id="modal-info">{info}</ModalInfo>
         <ModalClose onClick={onModalInteraction}>&#10006;</ModalClose>
       </ModalWindow>
     </ModalContainer>,

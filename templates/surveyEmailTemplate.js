@@ -362,8 +362,8 @@ module.exports = (survey, data) => {
                                   <table role="presentation" border="0" cellpadding="0" cellspacing="60">
                                     <tbody>
                                       <tr>
-                                        <td> <a href="${data.yes}" target="_blank">No</a> </td>
-                                        <td> <a href="${data.no}" target="_blank">Yes</a> </td>
+                                        <td> <a href="${data.no}" target="_blank">No</a> </td>
+                                        <td> <a href="${data.yes}" target="_blank">Yes</a> </td>
                                       </tr>
                                     </tbody>
                                   </table>

@@ -39,3 +39,7 @@ export const CreateSurveyPageBulletPoint = styled.div`
   background-color: #f09999;
   margin-right: 0.5rem;
 `;
+
+export const CreateSurveyPageCard = styled.p`
+  grid-column: 2/-1;
+`;

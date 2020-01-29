@@ -7,6 +7,9 @@ const getPercentage = ({ range }) => {
 };
 
 export const SurveyDescription = styled.div`
+  display: grid;
+  grid-template-rows: 1fr;
+
   font-size: 1.4rem;
   width: 100%;
   // white-space: nowrap;
@@ -33,6 +36,8 @@ export const SurveyDescription = styled.div`
     box-shadow: inset 0 0 6px #0000004d;
   }
 `;
+
+export const SurveyDesc = styled.div``;
 
 export const SurveyStartingDate = styled.p``;
 

@@ -11,7 +11,8 @@ import {
   CreateSurveyPageContainer,
   CreateSurveyCreditWrapper,
   CreateSurveyPageDescriptor,
-  CreateSurveyPageBulletPoint
+  CreateSurveyPageBulletPoint,
+  CreateSurveyPageCard
 } from "./CreateSurveyPageStyles";
 
 const CreateSurveyPage = () => {
@@ -31,6 +32,13 @@ const CreateSurveyPage = () => {
           <CreateSurveyPageDescriptor>
             <CreateSurveyPageBulletPoint />
             Credits can be purchased with credit card.
+          </CreateSurveyPageDescriptor>
+          <CreateSurveyPageDescriptor>
+            <CreateSurveyPageBulletPoint />
+            For payment test, please, use provided card credentials:
+            <CreateSurveyPageCard>
+              4242 4242 4242 4242 | 10/20 | 123
+            </CreateSurveyPageCard>
           </CreateSurveyPageDescriptor>
         </CreateSurveyPageFormWrapper>
         <StripeButton price={100} />

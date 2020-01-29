@@ -5,8 +5,6 @@ import FormInput from "../../components/FormInput/FormInput";
 import TextInput from "../../components/TextInput/TextInput";
 import Button from "../../components/Button/Button";
 
-import { withRouter } from "react-router-dom";
-
 // Redux
 import { connect } from "react-redux";
 import { createSurveyStart } from "../../redux/survey/survey-actions";
@@ -18,7 +16,7 @@ import {
   CreateSurveyFormForm
 } from "./CreateSurveyFormStyles";
 
-const CreateSurveyForm = ({ createSurveyStart, history }) => {
+const CreateSurveyForm = ({ createSurveyStart }) => {
   const [campaignInfo, setCampaignInfo] = useState({
     campaignName: "",
     campaignDescription: "",
@@ -52,7 +50,7 @@ const CreateSurveyForm = ({ createSurveyStart, history }) => {
       campaignBody: "",
       campaignParticipants: ""
     });
-    history.push("/surveys");
+    // history.push("/surveys");
   };
 
   return (
@@ -90,7 +88,7 @@ const CreateSurveyForm = ({ createSurveyStart, history }) => {
           name="campaignParticipants"
           value={campaignParticipants}
           max="300"
-          placeholder="*Insert up to ten email addresses separated by comma."
+          placeholder="*Insert up to ten email addresses separated by comma, e.g: ex@mple.com, ex@mple.com..."
         />
         <Button type="submit" description="Create New Campaign" />
       </CreateSurveyFormForm>
@@ -98,6 +96,4 @@ const CreateSurveyForm = ({ createSurveyStart, history }) => {
   );
 };
 
-export default connect(null, { createSurveyStart })(
-  withRouter(CreateSurveyForm)
-);
+export default connect(null, { createSurveyStart })(CreateSurveyForm);

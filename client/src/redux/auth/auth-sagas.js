@@ -51,6 +51,10 @@ export function* logUserIn({ payload }) {
     yield put(fetchAuthObjectStart());
   } catch (error) {
     yield put(logUserInFailure(error.message));
+    yield popModal(
+      "Something went wrong!",
+      "Make sure to provide correct email and password!"
+    );
   }
 }
 
@@ -82,10 +86,13 @@ export function* signUserUp({ payload }) {
     });
     yield put(signUserUpSuccess(true));
     yield put(fetchAuthObjectStart());
-    popModal("Congratulations, you have successfully registered!");
+    yield popModal("Congratulations!", "You have successfully registered!");
   } catch (error) {
     yield put(signUserUpFailure(error.message));
-    popModal("Something went wrong, please try again later!");
+    yield popModal(
+      "Something went wrong!",
+      "Some error occured during registration process, please try again later!"
+    );
   }
 }
 

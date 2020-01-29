@@ -1,6 +1,8 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
 import axios from "axios";
 
+import { popModal } from "../../utils/popupUtil";
+
 import {
   requestPaymentSuccess,
   requestPaymentFailure
@@ -33,21 +35,23 @@ export function* requestPayment(action) {
       )
     );
 
-    yield alert(`Success!
-          name: ${res.data.success.billing_details.name},
-          email: ${payload.token.email},
-          amount: $${res.data.success.amount / 100}.`);
+    yield popModal(
+      "Payment Success!",
+      `name: ${res.data.success.billing_details.name}, email: ${
+        payload.token.email
+      }, amount: $${res.data.success.amount / 100}.`
+    );
 
     yield put(fetchAuthObjectStart());
   } catch (error) {
-    yield alert(
-      `There was an issues with your payment, please try again. 
-      ${error.message}.`
-    );
     yield put(
       requestPaymentFailure(
         `There was an issues with your payment, please try again. ${error.message}.`
       )
+    );
+    yield popModal(
+      "Something went wrong!",
+      `There was an issues with your payment, please try again. ${error.message}`
     );
   }
 }

@@ -1,6 +1,8 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
 import axios from "axios";
 
+import { popModal } from "../../utils/popupUtil";
+
 import {
   createSurveySuccess,
   createSurveyFailure,
@@ -10,6 +12,8 @@ import {
   cleanSurveysDataSuccess,
   cleanSurveysDataFailure
 } from "./survey-actions";
+
+import { fetchAuthObjectStart } from "../auth/auth-actions";
 
 import surveyTypes from "./survey-types";
 
@@ -28,8 +32,14 @@ export function* createSurvey({ payload }) {
     });
     yield put(createSurveySuccess(response.data.data.data));
     yield put(fetchUserSurveysStart());
+    yield put(fetchAuthObjectStart());
+    yield popModal("Success!", "Survey was successfully created!");
   } catch (error) {
     yield put(createSurveyFailure(error.message));
+    yield popModal(
+      "Something went wrong!",
+      "Survey creation process failed, please make sure input data is correct."
+    );
   }
 }
 

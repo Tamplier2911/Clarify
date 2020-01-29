@@ -77,7 +77,7 @@ const Navigation = ({ currentUser, logUserOutStart }) => {
                   id: "ftr-1x3",
                   name: "Profile",
                   svg: <ProfilesSVG />,
-                  linkTo: "/surveys/new"
+                  linkTo: "/survey-new"
                 }
               ]}
             />
@@ -100,7 +100,7 @@ const Navigation = ({ currentUser, logUserOutStart }) => {
                   id: "ftr-2x3",
                   name: "History",
                   svg: <HistorySVG />,
-                  linkTo: "/surveys/new"
+                  linkTo: "/survey-new"
                 }
               ]}
             />

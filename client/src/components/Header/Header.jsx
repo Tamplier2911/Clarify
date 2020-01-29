@@ -36,7 +36,7 @@ const Header = ({ currentUser: { name, photo, email, credits } }) => {
         </UserInfo>
       </UserCredentials>
       <UserLinks>
-        <UserLink to="/surveys/new">Create Survey</UserLink>
+        <UserLink to="/survey-new">Create Survey</UserLink>
         <UserLink to="/surveys">Check Surveys</UserLink>
       </UserLinks>
     </HeaderContainer>
