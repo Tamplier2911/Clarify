@@ -9,6 +9,11 @@ import Button from "../../components/Button/Button";
 import { connect } from "react-redux";
 import { createSurveyStart } from "../../redux/survey/survey-actions";
 
+// Emails Validation
+import { popModal } from "../../utils/popupUtil";
+import { validateEmails } from "../../utils/validateEmails";
+import { cleanUpTextArea } from "../../utils/cleanUpTextArea";
+
 // JS Rendering CSS
 import {
   CreateSurveyFormWrapper,
@@ -38,18 +43,27 @@ const CreateSurveyForm = ({ createSurveyStart }) => {
 
   const onSubmit = async e => {
     await e.preventDefault();
-    createSurveyStart({
-      name: campaignName,
-      description: campaignDescription,
-      body: campaignBody,
-      participants: campaignParticipants
-    });
-    setCampaignInfo({
-      campaignName: "",
-      campaignDescription: "",
-      campaignBody: "",
-      campaignParticipants: ""
-    });
+    let failedEmails = validateEmails(campaignParticipants);
+    if (!failedEmails.length) {
+      createSurveyStart({
+        name: campaignName,
+        description: campaignDescription,
+        body: campaignBody,
+        participants: campaignParticipants
+      });
+      setCampaignInfo({
+        campaignName: "",
+        campaignDescription: "",
+        campaignBody: "",
+        campaignParticipants: ""
+      });
+      cleanUpTextArea("create-survey-ta");
+    } else {
+      popModal(
+        "Incorrect Email Addresses!",
+        `Following email addresses are not correct: ${failedEmails.join(" ")}`
+      );
+    }
     // history.push("/surveys");
   };
 
@@ -89,6 +103,7 @@ const CreateSurveyForm = ({ createSurveyStart }) => {
           value={campaignParticipants}
           max="300"
           placeholder="*Insert up to ten email addresses separated by comma, e.g: ex@mple.com, ex@mple.com..."
+          id="create-survey-ta"
         />
         <Button type="submit" description="Create New Campaign" />
       </CreateSurveyFormForm>

@@ -1,4 +1,51 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const modalWindowAnimation = css`
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @-moz-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @-o-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @-ms-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+`;
 
 export const ModalContainer = styled.div`
   display: grid;
@@ -30,6 +77,14 @@ export const ModalWindow = styled.div`
   overflow: scroll;
   overflow-x: hidden;
 
+  transition: opacity 0.5s;
+
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+  -moz-animation: fadeIn ease 1s;
+  -o-animation: fadeIn ease 1s;
+  -ms-animation: fadeIn ease 1s;
+
   &::-webkit-scrollbar {
     width: 0.2rem;
     background-color: #2834930c;
@@ -60,6 +115,8 @@ export const ModalWindow = styled.div`
     height: 50vh;
     width: 70vw;
   }
+
+  ${modalWindowAnimation}
 `;
 
 export const ModalHeader = styled.h3`
