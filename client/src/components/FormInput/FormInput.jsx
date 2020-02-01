@@ -5,13 +5,16 @@ import React from "react";
 import {
   FormInputContainer,
   FormInputBar,
+  FormInputFillingBar,
   FormInputLabel
 } from "./FormInputStyles";
 
 const FormInput = ({ onInputChange, label, ...otherProps }) => {
+  console.log(otherProps);
   return (
     <FormInputContainer>
       <FormInputBar onChange={onInputChange} {...otherProps} />
+      <FormInputFillingBar />
       {label ? (
         <FormInputLabel inputlength={otherProps.value.length}>
           {label}

@@ -8,7 +8,8 @@ export const CreateSurveyPageContainer = styled.div`
   // min-height: 70vh;
 
   padding: 2rem;
-  background-color: #f3f3f3;
+  // background-color: #f3f3f3;
+  background-color: #fff;
 `;
 
 export const CreateSurveyPageFormWrapper = styled.div`

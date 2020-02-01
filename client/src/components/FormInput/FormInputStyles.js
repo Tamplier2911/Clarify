@@ -14,6 +14,27 @@ export const FormInputContainer = styled.div`
   position: relative;
   grid-column: 1/-1;
 `;
+// INPUT DIV WITH GROWING BAR ~ REQIRE TESTING
+export const FormInputFillingBar = styled.div`
+  position: relative;
+  width: 100%;
+  height: 0.2rem;
+  background-color: #dededf;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 0%;
+    height: 0.2rem;
+    background-color: #d56363;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    transition: width 0.5s;
+  }
+`;
 
 export const FormInputBar = styled.input`
   color: #d56363;
@@ -25,7 +46,7 @@ export const FormInputBar = styled.input`
   padding: 1rem 1rem 1rem 0rem;
   background-color: var(--white);
   border: none;
-  border-bottom: 0.2rem solid #f09999;
+  // border-bottom: 0.2rem solid #f09999; /*******ADD THIS*********/
 
   transition: border 0.3s;
 
@@ -33,7 +54,8 @@ export const FormInputBar = styled.input`
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px #f3f3f3 inset !important;
+    // -webkit-box-shadow: 0 0 0 30px #f3f3f3 inset !important;
+    -webkit-box-shadow: 0 0 0 30px #fff inset !important;
   }
 
   &:-webkit-autofill {
@@ -47,7 +69,11 @@ export const FormInputBar = styled.input`
 
   &:focus {
     outline: none;
-    border-bottom: 0.2rem solid #d56363;
+    // border-bottom: 0.2rem solid #d56363; /*******ADD THIS*********/
+  }
+
+  &:focus ~ ${FormInputFillingBar}::after {
+    width: 100%; /*******REMOVE THIS*********/
   }
 
   &:focus ~ label {

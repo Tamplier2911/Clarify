@@ -77,6 +77,7 @@ const CreateSurveyForm = ({ createSurveyStart }) => {
           label="Name"
           name="campaignName"
           type="text"
+          autoComplete="off"
           required
         />
         <FormInput
@@ -85,6 +86,7 @@ const CreateSurveyForm = ({ createSurveyStart }) => {
           label="Description"
           name="campaignDescription"
           type="text"
+          autoComplete="off"
           required
         />
         <FormInput
@@ -93,6 +95,7 @@ const CreateSurveyForm = ({ createSurveyStart }) => {
           label="Body"
           name="campaignBody"
           type="text"
+          autoComplete="off"
           required
         />
         <TextInput

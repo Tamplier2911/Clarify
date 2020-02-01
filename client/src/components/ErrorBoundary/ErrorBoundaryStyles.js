@@ -10,7 +10,8 @@ export const ErrorBoundaryContainer = styled.div`
   grid-row-gap: 2rem;
   min-height: 84vh;
   padding: 2rem;
-  background-color: #f3f3f3;
+  // background-color: #f3f3f3;
+  background-color: #fff;
 `;
 
 export const ErrorBoundaryText = styled.div`
