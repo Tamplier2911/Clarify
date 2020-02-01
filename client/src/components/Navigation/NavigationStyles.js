@@ -129,6 +129,8 @@ export const NavAnchors = styled(Link)`
     display: flex;
     align-items: center;
 
+    height: 4.8rem;
+
     color: #e9e9e9;
     font-weight: 300;
     text-decoration: none;

@@ -77,7 +77,7 @@ export const HomepageLink = styled(Link)`
     display: inline-block;
     text-decoration: none;
     font-weight: 700;
-    color: #ff8c90;
+    color: #983336;
     border-bottom: 0.2rem transparent solid;
 
     transition: transform 0.3s, border 0.3s;
@@ -85,7 +85,7 @@ export const HomepageLink = styled(Link)`
 
   &:hover,
   &:active {
-    border-bottom: 0.2rem #ff8c90 solid;
+    border-bottom: 0.2rem #983336 solid;
     transform: scale(1.05);
   }
 `;
