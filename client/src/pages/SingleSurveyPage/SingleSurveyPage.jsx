@@ -46,10 +46,16 @@ const SingleSurveyPage = ({ survey }) => {
         <SingleSurveyBody>
           <SingleSurveyText>Survey subject:</SingleSurveyText> {body}
         </SingleSurveyBody>
-        <SingleSurveyNegative negPercent={percentOfNegative || 0}>
+        <SingleSurveyNegative
+          negPercent={percentOfNegative || 0}
+          posPercent={percentOfPositive || 0}
+        >
           {percentOfNegative || 0}%
         </SingleSurveyNegative>
-        <SingleSurveyPositive posPercent={percentOfPositive || 0}>
+        <SingleSurveyPositive
+          negPercent={percentOfNegative || 0}
+          posPercent={percentOfPositive || 0}
+        >
           {percentOfPositive || 0}%
         </SingleSurveyPositive>
         <SingleSurveyTotal>

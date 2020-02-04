@@ -6,14 +6,22 @@ const {
   createOneSurvey,
   getOneSurvey,
   updateOneSurvey,
-  deleteOneSurvey
+  deleteOneSurvey,
+  getVoteYes,
+  getVoteNo,
+  createSendgridReport
 } = require("../controllers/surveyController");
 
 const { protect, restrictTo } = require("../controllers/authController");
 
 const router = express.Router();
 
-router.route("/").get((req, res, next) => next());
+// SENDGRID REPORT
+router.route("/report").post(createSendgridReport);
+
+// PARTICIPANT VOTE ROUTE
+router.route("/vote/yes/:id").get(getVoteYes);
+router.route("/vote/no/:id").get(getVoteNo);
 
 // PROTECTED
 router.use(protect);

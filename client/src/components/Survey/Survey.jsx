@@ -38,6 +38,17 @@ const Survey = ({
   const percentOfStart = Math.round(range.start / percentOfOne);
   const percentOfEnd = Math.round(range.end / percentOfOne);
   range = { start: percentOfStart, end: percentOfEnd };
+
+  // evaluate range
+  range =
+    range.start && range.end
+      ? range
+      : range.start
+      ? { start: range.start, end: 0 }
+      : range.end
+      ? { start: 0, end: range.end }
+      : { start: 50, end: 50 };
+
   return (
     <SurveyContainer to={`${path}/${surveyId}`}>
       <SurveyName>{name}</SurveyName>
@@ -45,7 +56,8 @@ const Survey = ({
         <SurveyDesc>{description}</SurveyDesc>
         <SurveyStartingDate>Started: {date}</SurveyStartingDate>
       </SurveyDescription>
-      <SurveyProgress range={range.start ? range : { start: 50, end: 50 }}>
+      {/* <SurveyProgress range={range.start ? range : { start: 50, end: 50 }}> */}
+      <SurveyProgress range={range}>
         <SurveyPercentageStart>{range.start || 0}%</SurveyPercentageStart>
         <SurveyPercentageEnd>{range.end || 0}%</SurveyPercentageEnd>
       </SurveyProgress>

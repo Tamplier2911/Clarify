@@ -11,7 +11,17 @@ const feedStyle = css`
 `;
 
 const generatePositiveStatistics = props => {
-  if (props.posPercent === 0) {
+  if (props.posPercent === 0 && props.negPercent) {
+    return `
+      ${feedStyle}
+      background-image: linear-gradient(
+      60deg,
+      #67fdb2 0%,
+      #67fdb2 0%,
+      transparent 0%,
+      transparent 100%);
+      `;
+  } else if (props.posPercent === 0) {
     return `
       ${feedStyle}
       background-image: linear-gradient(
@@ -34,7 +44,17 @@ const generatePositiveStatistics = props => {
 };
 
 const generateNegativeStatistics = props => {
-  if (props.negPercent === 0) {
+  if (props.negPercent === 0 && props.posPercent) {
+    return `
+      ${feedStyle}
+      background-image: linear-gradient(
+      60deg,
+      #fd8484 0%,
+      #fd8484 0%,
+      transparent 0%,
+      transparent 100%);
+    `;
+  } else if (props.negPercent === 0) {
     return `
       ${feedStyle}
       background-image: linear-gradient(

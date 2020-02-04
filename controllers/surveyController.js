@@ -5,6 +5,8 @@ const catchAsync = require("../utils/catchAsync");
 const Mailer = require("../utils/Mailer");
 const surveyTemplate = require("../templates/surveyEmailTemplate");
 
+const voteTemplate = require("../templates/surveyThankyouTemplate");
+
 const {
   getAll,
   getOne,
@@ -12,6 +14,76 @@ const {
   updateOne,
   deleteOne
 } = require("./handlerFactory");
+
+// participants voting routes
+exports.getVoteYes = (req, res, next) => {
+  res.send(voteTemplate());
+};
+
+exports.getVoteNo = (req, res, next) => {
+  res.send(voteTemplate());
+};
+
+// process sendgrid post request containing reports
+exports.createSendgridReport = catchAsync(async (req, res, next) => {
+  const processClickEevents = async ({ email, url }) => {
+    const urlArr = url.split("/");
+    const surveyId = urlArr[urlArr.length - 1];
+    const vote = urlArr[urlArr.length - 2];
+    const participantEmail = email;
+
+    if (!surveyId || !vote) return;
+    // console.log(surveyId, vote, participantEmail, "PARTICIPANT DATA");
+
+    // get survey using id wired to url of webhook
+    const survey = await Survey.findById(surveyId).select("+participants");
+    if (!survey._id) return;
+
+    // find index of current participant by email
+    const participantIndex = survey.participants.findIndex(
+      participant => participant.email === participantEmail
+    );
+    if (participantIndex === -1) return;
+
+    // if participant already voted - return
+    if (survey.participants[participantIndex].vote === true) return;
+
+    // esle turn vote status to true
+    survey.participants[participantIndex].vote = true;
+
+    // increase number of participants enrolled in survey
+    survey.participantsEnrolled = survey.participantsEnrolled + 1;
+
+    // dependant on participant clicked 'yes' or 'no'
+    // either increase positive or negative feed
+    if (vote === "yes") {
+      survey.positiveFeed = survey.positiveFeed + 1;
+    } else if (vote === "no") {
+      survey.negativeFeed = survey.negativeFeed + 1;
+    }
+
+    // save survey
+    await survey.save();
+
+    // console.log(survey);
+  };
+
+  // filter out click events only
+  const clickEvents = req.body.filter(obj => obj.event === "click");
+
+  // use hashmap to remove duplicates if user clicked twice or more
+  // let map = clickEvents.reduce((acc, el) => ((acc[el.email] = el), acc), {});
+  let map = clickEvents.reduce(
+    (acc, obj) => ((acc[`${obj.email}-${obj.url.split("/")[8]}`] = obj), acc),
+    {}
+  );
+  console.log(map);
+  // loop over unique click events using processClickEvents function on each event
+  Object.values(map).map(processClickEevents);
+
+  // generic response
+  res.status(201).send("Success!");
+});
 
 // get all surveys created by current requesting users
 exports.getAllUserSurveys = catchAsync(async (req, res, next) => {
@@ -78,14 +150,21 @@ exports.createOneSurvey = catchAsync(async (req, res, next) => {
     yes: "https://clarify-s.herokuapp.com/",
     no: "https://clarify-s.herokuapp.com/"
   };
+
+  // dev mode
+  urlsDev = {
+    yes: "https://50669621.ngrok.io/api/v1/surveys/vote/yes/",
+    no: "https://50669621.ngrok.io/api/v1/surveys/vote/no/"
+  };
+
   // urls = {
-  //   yes: "https://clarify-s.herokuapp.com/api/v1/surveys/:id/yes",
-  //   no: "https://clarify-s.herokuapp.com/api/v1/surveys/:id/no"
+  //   yes: "https://clarify-s.herokuapp.com/api/v1/surveys/vote/yes/:id",
+  //   no: "https://clarify-s.herokuapp.com/api/v1/surveys/vote/no/:id"
   // };
 
   // create route for res.send('Thank for participating in a survey! You gained +100 to your karma!')
 
-  const mailer = new Mailer(survey, surveyTemplate(survey, urls));
+  const mailer = new Mailer(survey, surveyTemplate(survey, urlsDev));
 
   // using pug templates
   // const mailer = new Mailer(survey, "survey");
