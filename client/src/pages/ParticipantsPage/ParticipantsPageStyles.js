@@ -16,6 +16,10 @@ export const ParticipantPageHeading = styled.div`
   font-size: 8rem;
   align-self: center;
 
+  @media only screen and (max-width: 820px) {
+    font-size: 7rem;
+  }
+
   @media only screen and (max-width: 768px) {
     font-size: 6rem;
   }

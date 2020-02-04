@@ -32,6 +32,32 @@ exports.createSendgridReport = catchAsync(async (req, res, next) => {
     const vote = urlArr[urlArr.length - 2];
     const participantEmail = email;
 
+    /*
+      POSSIBLE APPROACH
+     
+    // turn vote to true \/
+    // participantsEnrolled to participantsEnrolled + 1 \/
+    // if vote === 'yes' positiveFeed = positiveFeed + 1 \/
+    // if vote === 'no' negativeFeed = negativeFeed + 1 \/
+
+    // found exact participant and update it
+    Survey.updateOne(
+      {
+        id: surveyId,
+        participants: {
+          $elemMatch: { email: participantEmail, vote: false }
+        }
+      },
+      {
+        // $inc: { [choice]: 1 }
+        $inc: { [participantsEnrolled]: 1 },
+        $inc: { [vote === "yes" ? positiveFeed : negativeFeed]: 1 },
+        $set: { "participants.$.vote": true }
+      }
+    );
+
+    */
+
     if (!surveyId || !vote) return;
     // console.log(surveyId, vote, participantEmail, "PARTICIPANT DATA");
 
