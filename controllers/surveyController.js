@@ -144,27 +144,26 @@ exports.createOneSurvey = catchAsync(async (req, res, next) => {
     });
   }
 
-  // send email
-  // using selfmade js templates
-  urls = {
-    yes: "https://clarify-s.herokuapp.com/",
-    no: "https://clarify-s.herokuapp.com/"
-  };
+  if (process.env.NODE_ENV === "development") {
+    // dev mode urls
+    // npx ngrok http 5000
+    urls = {
+      yes: "https://50669621.ngrok.io/api/v1/surveys/vote/yes/",
+      no: "https://50669621.ngrok.io/api/v1/surveys/vote/no/"
+    };
+  }
 
-  // dev mode
-  urlsDev = {
-    yes: "https://50669621.ngrok.io/api/v1/surveys/vote/yes/",
-    no: "https://50669621.ngrok.io/api/v1/surveys/vote/no/"
-  };
-
-  // urls = {
-  //   yes: "https://clarify-s.herokuapp.com/api/v1/surveys/vote/yes/:id",
-  //   no: "https://clarify-s.herokuapp.com/api/v1/surveys/vote/no/:id"
-  // };
+  if (process.env.NODE_ENV === "production") {
+    // prod mode urls
+    urls = {
+      yes: "https://clarify-s.herokuapp.com/api/v1/surveys/vote/yes/",
+      no: "https://clarify-s.herokuapp.com/api/v1/surveys/vote/no/"
+    };
+  }
 
   // create route for res.send('Thank for participating in a survey! You gained +100 to your karma!')
 
-  const mailer = new Mailer(survey, surveyTemplate(survey, urlsDev));
+  const mailer = new Mailer(survey, surveyTemplate(survey, urls));
 
   // using pug templates
   // const mailer = new Mailer(survey, "survey");
