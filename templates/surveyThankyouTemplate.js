@@ -102,7 +102,7 @@ module.exports = () => {
       <div id="root">
         <div class="container">
           <div class="heading">Thank You!</div>
-          <div class="message">You have participated in a survey and gained +100 to your karma!</h4>
+          <div class="message">You have participated in a survey and gained +100 to your karma!</div>
         </div>
       </div>
     </body>

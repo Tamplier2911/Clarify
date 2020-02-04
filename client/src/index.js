@@ -1,7 +1,10 @@
-import "./index.scss";
+// import "./index.scss";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+
+// JS Rendering CSS Global Style
+import { GlobalStyle } from "./IndexStyles";
 
 // service worker
 import * as serviceWorker from "./serviceWorker";
@@ -20,6 +23,7 @@ import { store } from "./redux/store";
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
+      <GlobalStyle />
       <App />
     </BrowserRouter>
   </Provider>,

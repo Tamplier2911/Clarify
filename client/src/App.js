@@ -1,4 +1,4 @@
-import "./App.scss";
+// import "./App.scss";
 import React, { useEffect, lazy, Suspense } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -22,6 +22,7 @@ import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 // import CreateSurveyPage from "./pages/CreateSurveyPage/CreateSurveyPage";
 // import SignUpPage from "./pages/SignUpPage/SignUpPage";
 // import SingleSurveyPage from "./pages/SingleSurveyPage/SingleSurveyPage";
+// import ParticipantsPage from "./pages/ParticipantsPage/ParticipantsPage";
 
 // JS Rendering CSS
 import { AppContainer, AppMain } from "./AppStyles";
@@ -35,6 +36,9 @@ const CreateSurveyPage = lazy(() =>
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
 const SingleSurveyPage = lazy(() =>
   import("./pages/SingleSurveyPage/SingleSurveyPage")
+);
+const ParticipantsPage = lazy(() =>
+  import("./pages/ParticipantsPage/ParticipantsPage")
 );
 
 const App = ({ currentUser, fetchAuthObjectStart }) => {
@@ -77,6 +81,10 @@ const App = ({ currentUser, fetchAuthObjectStart }) => {
                 render={() =>
                   currentUser ? <Redirect to="/" /> : <SignUpPage />
                 }
+              />
+              <Route
+                path="/api/v1/surveys/vote/"
+                component={ParticipantsPage}
               />
             </Suspense>
           </ErrorBoundary>

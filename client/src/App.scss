@@ -1,3 +1,4 @@
+/*
 #root {
   display: grid;
   grid-template-rows: 1fr;
@@ -19,7 +20,7 @@
       [center-end] 1fr [full-end];
   }
 }
-/*
+
 .container {
   grid-column: center-start / center-end;
   grid-row: 1 / -1;
