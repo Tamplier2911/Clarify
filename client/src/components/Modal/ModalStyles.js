@@ -112,7 +112,7 @@ export const ModalWindow = styled.div`
   }
 
   @media only screen and (max-width: 450px) {
-    height: 50vh;
+    height: 35vh;
     width: 70vw;
   }
 

@@ -10,7 +10,6 @@ import {
 } from "./FormInputStyles";
 
 const FormInput = ({ onInputChange, label, ...otherProps }) => {
-  console.log(otherProps);
   return (
     <FormInputContainer>
       <FormInputBar onChange={onInputChange} {...otherProps} />

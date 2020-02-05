@@ -82,10 +82,32 @@ export const NavContainer = styled.nav`
 
 export const NavWrapper = styled.div`
   min-height: 100%;
-  background-image: linear-gradient(#ffffffd8, #e6606b83);
+  // background-image: linear-gradient(#ffffffd8, #e6606b83);
+  background-image: linear-gradient(
+    #ffdddd 31rem,
+    #e6606b83 31rem,
+    // #ffdddd 100%
+      #ffdddd 200rem
+  );
 
   display: grid;
   grid-auto-rows: min-content;
+
+  @media only screen and (max-width: 48em) {
+    background-image: linear-gradient(
+      #ffdddd 30.8rem,
+      #e6606b83 31rem,
+      #ffdddd 200rem
+    );
+  }
+
+  @media only screen and (max-width: 26.563em) {
+    background-image: linear-gradient(
+      #ffdddd 22.9rem,
+      #e6606b83 22.9rem,
+      #ffdddd 200rem
+    );
+  }
 `;
 
 export const LogoLink = styled(Link)`

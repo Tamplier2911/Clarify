@@ -24,12 +24,12 @@ const HomePage = ({ user }) => {
       <HomepageWallpaper />
       <HomepageIntroLeft>
         <HomepageStep>1</HomepageStep>
-        Clarify - is an email service, that helps you to know what other people
-        think of your service or a feature.
+        Clarify - is an email service, that helps you to collect feedback from
+        people that using your service or a feature.
       </HomepageIntroLeft>
       <HomepageIntroRight>
-        In order to help you improve it, we sending thousands of letters to an
-        existing users base.
+        In order to help you improve user experience, we sending thousands of
+        letters to user table you provide.
         <HomepageStep>2</HomepageStep>
       </HomepageIntroRight>
       <HomepageIntroLeft>
@@ -37,7 +37,7 @@ const HomePage = ({ user }) => {
         Each letter - containing a poll, which recipient can participate in.
       </HomepageIntroLeft>
       <HomepageIntroRight>
-        Once survey is finished you can access results from your dashbord
+        Once survey is finished, you can access results from your dashboard
         shortly.
         <HomepageStep>4</HomepageStep>
       </HomepageIntroRight>

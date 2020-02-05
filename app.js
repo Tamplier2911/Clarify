@@ -17,7 +17,9 @@ const compression = require("compression");
 const cors = require("cors");
 const enforce = require("express-sslify");
 
-// error handlers here
+// error handlers
+const AppError = require("./utils/appError");
+const globalErrorHandler = require("./controllers/errorController");
 
 // routes
 const surveyRouter = require("./routes/surveyRoutes");
@@ -80,9 +82,22 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+// // HANDLING UNHANDLED ROUTES
+app.all("*", (req, res, next) => {
+  const error = new AppError(
+    `Can't find ${req.originalUrl} route on this server.`,
+    404
+  );
+
+  next(error);
+});
+
 // run service worker on request
 app.get("/service-worker.js", (req, res) => {
   res.sendFile(path.resolve(__dirname, "..", "build", "service-worker.js"));
 });
+
+// GLOBAL ERROR HANDLING MIDDLEWARE
+app.use(globalErrorHandler);
 
 module.exports = app;

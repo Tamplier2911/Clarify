@@ -1,6 +1,7 @@
+const AppError = require("../utils/appError");
 const { promisify } = require("util");
 const jwt = require("jsonwebtoken");
-const crypto = require("crypto");
+// const crypto = require("crypto");
 
 const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
@@ -55,20 +56,12 @@ exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).json({
-      status: 400,
-      error: "Bad Request",
-      message: "Please provide email and password."
-    });
+    return next(new AppError("Please provide email and password.", 400));
   }
 
   const user = await User.findOne({ email: email }).select("+password");
   if (!user || !(await user.correctPassword(password, user.password))) {
-    return res.status(401).json({
-      status: 401,
-      error: "Unauthorized",
-      message: "Incorrect email or password."
-    });
+    return next(new AppError("Incorrect email or password.", 401));
   }
 
   createSendToken(user, 200, req, res);
@@ -98,30 +91,22 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
 
   if (!token) {
-    return res.status(401).json({
-      status: 401,
-      error: "Unauthorized",
-      message: "You have to login, in order to view this route."
-    });
+    return next(
+      new AppError("You have to login, in order to view this route.", 401)
+    );
   }
 
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
   const currentUser = await User.findById(decoded.id);
 
   if (!currentUser) {
-    return res.status(401).json({
-      status: 401,
-      error: "Unauthorized",
-      message: "User with that ID is no longer exists."
-    });
+    return next(new AppError("User with that ID is no longer exists.", 401));
   }
 
   if (currentUser.changePasswordAfter(decoded.iat)) {
-    return res.status(401).json({
-      status: 401,
-      error: "Unauthorized",
-      message: "User recently changed password. Please log in again."
-    });
+    return next(
+      new AppError("User recently changed password. Please log in again.", 401)
+    );
   }
 
   // Grant access to protected route
@@ -133,11 +118,9 @@ exports.protect = catchAsync(async (req, res, next) => {
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      return res.status(403).json({
-        status: 403,
-        error: "Forbidden",
-        message: "You do not have premission to perform this action."
-      });
+      return next(
+        new AppError("You do not have premission to perform this action.", 403)
+      );
     }
     next();
   };

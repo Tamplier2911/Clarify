@@ -2,6 +2,8 @@ const User = require("../models/userModel");
 const Survey = require("../models/surveyModel");
 const catchAsync = require("../utils/catchAsync");
 
+const AppError = require("../utils/appError");
+
 const Mailer = require("../utils/Mailer");
 const surveyTemplate = require("../templates/surveyEmailTemplate");
 
@@ -54,7 +56,7 @@ exports.createSendgridReport = catchAsync(async (req, res, next) => {
         $inc: { [vote === "yes" ? positiveFeed : negativeFeed]: 1 },
         $set: { "participants.$.vote": true }
       }
-    );
+    ).exec();
 
     */
 
@@ -128,13 +130,15 @@ exports.createOneSurvey = catchAsync(async (req, res, next) => {
   const { _id, credits } = req.user;
 
   // check if user have enough money to purchase survey
-  if (req.user.credits < 100)
-    return res.status(403).json({
-      status: 403,
-      error: "Forbidden",
-      message:
-        "You have not enough credits to purchase a survey, please add more credits."
-    });
+
+  if (req.user.credits < 100) {
+    return next(
+      new AppError(
+        "You have not enough credits to purchase a survey, please add more credits.",
+        403
+      )
+    );
+  }
 
   const surveyBody = {
     name: req.body.name,
@@ -163,11 +167,7 @@ exports.createOneSurvey = catchAsync(async (req, res, next) => {
   const survey = await Survey.create(surveyBody);
 
   if (!survey) {
-    return res.status(400).json({
-      status: 400,
-      error: "Bad Request",
-      message: "Survey was not created, please try again."
-    });
+    return next(new AppError("Survey was not created, please try again.", 403));
   }
 
   if (process.env.NODE_ENV === "development") {
@@ -201,12 +201,12 @@ exports.createOneSurvey = catchAsync(async (req, res, next) => {
   if (![200, 201, 202].includes(sendgridResponse.statusCode)) {
     await Survey.findByIdAndDelete(survey._id);
 
-    return res.status(400).json({
-      status: 400,
-      error: "Bad Request",
-      message:
-        "Something went wrong with email service, please try again later."
-    });
+    return next(
+      new AppError(
+        "Something went wrong with email service, please try again later.",
+        403
+      )
+    );
   }
 
   // if survey created and emails were send charge user

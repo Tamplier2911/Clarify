@@ -63,19 +63,19 @@ const Navigation = ({ currentUser, logUserOutStart }) => {
               featureLinks={[
                 {
                   id: "ftr-1x1",
-                  name: "Account",
+                  name: "Home",
                   svg: <AccountsSVG />,
                   linkTo: "/"
                 },
                 {
                   id: "ftr-1x2",
-                  name: "Report",
+                  name: "Campaigns",
                   svg: <ReportsSVG />,
                   linkTo: "/surveys"
                 },
                 {
                   id: "ftr-1x3",
-                  name: "Profile",
+                  name: "New Campaign",
                   svg: <ProfilesSVG />,
                   linkTo: "/survey-new"
                 }
@@ -86,21 +86,21 @@ const Navigation = ({ currentUser, logUserOutStart }) => {
               featureLinks={[
                 {
                   id: "ftr-2x1",
-                  name: "Actions",
+                  name: "Profle",
                   svg: <ActionsSVG />,
                   linkTo: "/"
                 },
                 {
                   id: "ftr-2x2",
-                  name: "Day Management",
+                  name: "Report",
                   svg: <ManagementSVG />,
-                  linkTo: "/surveys"
+                  linkTo: "/"
                 },
                 {
                   id: "ftr-2x3",
                   name: "History",
                   svg: <HistorySVG />,
-                  linkTo: "/survey-new"
+                  linkTo: "/"
                 }
               ]}
             />
