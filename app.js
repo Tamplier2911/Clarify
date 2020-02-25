@@ -82,7 +82,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// // HANDLING UNHANDLED ROUTES
+// HANDLING UNHANDLED ROUTES
 app.all("*", (req, res, next) => {
   const error = new AppError(
     `Can't find ${req.originalUrl} route on this server.`,

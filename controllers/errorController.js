@@ -104,7 +104,7 @@ module.exports = (err, req, res, next) => {
     sendErrorDev(err, req, res);
   } else if (process.env.NODE_ENV === "production") {
     // Take copy of original error object, and work with it since now
-    let err = JSON.parse(JSON.stringify(err));
+    // let err = JSON.parse(JSON.stringify(err));
 
     if (err.name === "CastError") {
       err = handleCastErrorDB(err);
