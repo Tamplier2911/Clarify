@@ -69,7 +69,7 @@ exports.getAll = Model =>
   catchAsync(async (req, res, next) => {
     // Nested route GET review allowance
     let filter = {};
-    if (req.params.tourId) filter = { tour: req.params.tourId };
+    if (req.params.id) filter = { survey: req.params.id };
 
     // BUILD THE QUERY
     const features = new APIFeatures(Model.find(filter), req.query)
